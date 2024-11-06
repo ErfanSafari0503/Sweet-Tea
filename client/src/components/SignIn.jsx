@@ -1,4 +1,4 @@
-export function SignIn() {
+export default function SignIn() {
   return (
     <form className="container max-w-96 h-screen m-auto	w-full px-5 py-4 text-xs flex flex-col flex-wrap">
       <h3 className="text-start text-2xl my-6">ورود</h3>

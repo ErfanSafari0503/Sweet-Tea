@@ -6,6 +6,9 @@ export default {
       borderWidth: {
         default: "1px",
       },
+      fontFamily: {
+        primary: ["IRANSans"],
+      },
     },
   },
   plugins: [],

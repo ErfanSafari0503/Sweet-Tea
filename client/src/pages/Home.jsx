@@ -1,62 +1,10 @@
+import Navbar from "../components/Navbar";
+
 export default function Home() {
   return (
     <div className="w-full font-primary">
       <header className="w-full p-6 bg-blue-600 xl:bg-white xl:border-b-default xl:border-b-stone-200">
-        <nav className="w-full">
-          <ul className="flex w-full flex-row text-base justify-between">
-            <li className="order-last xl:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="size-10 text-white"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-            </li>
-            <li className="hidden xl:flex order-2">
-              <ul className="flex px-10 gap-6">
-                <li>
-                  <button className="border-2 border-stone-400 px-6 py-2 rounded-lg">
-                    ورود
-                  </button>
-                </li>
-                <li>
-                  <button className="px-6 py-2 rounded-lg bg-blue-700 text-zinc-50">
-                    ثبت‌نام
-                  </button>
-                </li>
-              </ul>
-            </li>
-            <li className="hidden xl:flex order-1 items-center">
-              <ul className="flex gap-10">
-                <li>
-                  <a href="#" className="font-bold">
-                    صفحه اصلی
-                  </a>
-                </li>
-                <li>
-                  <a href="#">سوالات متداول</a>
-                </li>
-                <li>
-                  <a href="#">تماس با ما</a>
-                </li>
-                <li>
-                  <a href="#">درباره ما</a>
-                </li>
-              </ul>
-            </li>
-            <li className="order-first px-4 py-2 bg-white rounded-lg xl:bg-slate-200">
-              چایی نبات
-            </li>
-          </ul>
-        </nav>
+        <Navbar />
         <figure className="xl:hidden">
           <img
             className="m-auto relative top-12"

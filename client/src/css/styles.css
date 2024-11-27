@@ -8,3 +8,32 @@
       format("woff2");
   }
 }
+html {
+  font-size: 10px;
+}
+@media (min-width: 500px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1024px) {
+  html {
+    font-size: 20px;
+  }
+}
+div.steps:not(.without):after {
+  content: " ";
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 1.6rem;
+  background: repeating-linear-gradient(
+    to bottom,
+    #888,
+    #888 10px,
+    transparent 5px,
+    transparent 16px
+  );
+  left: 50%;
+  transform: translateX(-50%);
+}

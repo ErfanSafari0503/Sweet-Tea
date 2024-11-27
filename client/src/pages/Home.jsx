@@ -1,4 +1,7 @@
 import Navbar from "../components/Navbar";
+import Features from "../components/Features/Features";
+import HowItWorks from "../components/How_it_works/HowItWorks";
+
 export default function Home() {
   return (
     <div className="w-full font-primary">
@@ -78,148 +81,8 @@ export default function Home() {
             <img src="src/images/cafe 1.svg" alt="" />
           </div>
         </aside>
-        <section className="flex flex-col w-full gap-10 mb-14">
-          <article className="flex flex-col w-full items-center gap-5">
-            <div className="w-full text-center">
-              <p className="font-bold text-3xl">
-                چرا از «چایی نبات» استفاده کنم؟
-              </p>
-            </div>
-            <div className="w-full text-center">
-              <p className="text-xl">
-                چون ما در چایی نبات بهت کمک می‌کنیم که لحظه‌های قشنگ رو با
-                دوستات به اشتراک بذاری
-              </p>
-            </div>
-          </article>
-          <article className="flex w-full flex-col gap-10">
-            <div className="flex gap-8 items-center">
-              <div className="p-[4%] sm:p-6 bg-blue-50 rounded-full ">
-                <img
-                  className="size-[10vw] sm:size-16"
-                  src="src/images/suprise 1.svg"
-                  alt=""
-                />
-              </div>
-              <div className="flex flex-col gap-4 items-start max-w-[70%]">
-                <p className="text-2xl font-bold">
-                  چایی نبات هدیه بده یا هدیه بگیر!
-                </p>
-                <p className="text-lg opacity-70">
-                  با لینک اختصاصی خودت، از دوستانت چایی نبات بگیر یا برای اون‌ها
-                  هدیه بفرست. سریع و دوستانه!
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-8 items-center">
-              <div className="p-[4%] sm:p-6 bg-blue-50 rounded-full">
-                <img
-                  className="size-[10vw] sm:size-16"
-                  src="src/images/card 1.svg"
-                  alt=""
-                />
-              </div>
-              <div className="flex flex-col gap-4 items-start max-w-[70%]">
-                <p className="text-2xl font-bold">
-                  حتی برای کسایی که حساب ندارن
-                </p>
-                <p className="text-lg opacity-70">
-                  با شماره تلفن، تلگرام یا ایمیل، به کسی که حساب نداره هم چایی
-                  نبات هدیه بده.
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-8 items-center">
-              <div className="p-[4%] sm:p-6 bg-blue-50 rounded-full">
-                <img
-                  className="size-[10vw] sm:size-16"
-                  src="src/images/wow 1.svg"
-                  alt=""
-                />
-              </div>
-              <div className="flex flex-col gap-4 items-start max-w-[70%]">
-                <p className="text-2xl font-bold">
-                  زمان‌بندی کن و سورپرایز کن!
-                </p>
-                <p className="text-lg opacity-70">
-                  برای آشنایی با کراش یا دعوت به یک دیت، چایی نبات رو با تاریخ و
-                  ساعت تنظیم کن.
-                </p>
-              </div>
-            </div>
-          </article>
-        </section>
-        <section className="flex w-full flex-col mb-14">
-          <article className="flex w-full flex-col gap-14">
-            <div className="w-full flex flex-col items-center gap-5">
-              <p className="font-bold text-3xl">چجوری کار میکنه؟</p>
-              <p className="text-2xl opacity-70">
-                توی 4 مرحله ساده چایی نبات بگیر!
-              </p>
-            </div>
-            <div className="w-full flex flex-col min-[700px]:px-20">
-              <div className="flex gap-10 ">
-                <div className="relative w-fit self-stretch overflow-hidden">
-                  <div className="steps size-6 bg-zinc-600 p-2 border-2 border-slate-400 rounded-full ml-auto">
-                    <div></div>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-2 grow items-start mb-10">
-                  <h2 className="font-bold text-xl text-blue-800">
-                    1. ثبت‌نام کن و لینک بگیر
-                  </h2>
-                  <p className="text-base opacity-70">
-                    یک حساب کاربری بساز و لینک اختصاصی خودت رو دریافت کن.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-10 ">
-                <div className="relative w-fit self-stretch overflow-hidden">
-                  <div className="steps size-6 bg-zinc-600 p-2 border-2 border-slate-400 rounded-full ml-auto"></div>
-                </div>
-                <div className="flex flex-col gap-2 grow items-start mb-10">
-                  <h2 className="font-bold text-xl text-blue-800">
-                    2. چایی نبات هدیه بگیر
-                  </h2>
-                  <p className="text-base opacity-70">
-                    دوستانت لینک تو رو می‌فرستن و بهت چایی نبات هدیه می‌دن.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-10 ">
-                <div className="relative w-fit self-stretch overflow-hidden">
-                  <div className="steps size-6 bg-zinc-600 p-2 border-2 border-slate-400 rounded-full ml-auto"></div>
-                </div>
-                <div className="flex flex-col gap-2 grow items-start mb-10">
-                  <h2 className="font-bold text-xl text-blue-800">
-                    3. چایی نباتت رو برداشت کن
-                  </h2>
-                  <p className="text-base opacity-70">
-                    برو به داشبوردت، درخواست برداشت ثبت کن.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-10 ">
-                <div className="relative w-fit self-stretch overflow-hidden">
-                  <div className="steps size-6 bg-zinc-600 p-2 border-2 border-slate-400 rounded-full ml-auto without"></div>
-                </div>
-                <div className="flex flex-col gap-2 grow items-start mb-10">
-                  <h2 className="font-bold text-xl text-blue-800">
-                    4. در دانشگاه دریافت کن
-                  </h2>
-                  <p className="text-base opacity-70">
-                    کد QR رو به فروشنده نشون بده و چاییت رو دریافت کن.
-                  </p>
-                </div>
-              </div>
-              <div className="w-full">
-                <button className="w-full bg-blue-700 p-4 rounded-lg text-zinc-50 text-lg">
-                  سفارش بده
-                </button>
-              </div>
-            </div>
-          </article>
-        </section>
+        <Features />
+        <HowItWorks />
         <section className="flex w-full flex-col pt-14">
           <article className="flex w-full flex-col gap-12">
             <div className="w-full text-center">

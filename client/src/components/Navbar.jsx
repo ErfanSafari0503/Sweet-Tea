@@ -59,7 +59,7 @@ export default function Navbar() {
           </ul>
         </li>
         <li className="order-first px-4 py-2 bg-white rounded-lg xl:bg-slate-200">
-          چایی نبات
+          <Link to="/">چایی نبات</Link>
         </li>
       </ul>
     </nav>

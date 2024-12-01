@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Features from "../components/Features/Features";
 import HowItWorks from "../components/How_it_works/HowItWorks";
+import FrequentlyAskedQuestion from "../components/Frequently_Asked_Question/FrequentlyAskedQuestion";
 
 export default function Home() {
   return (
@@ -83,7 +84,8 @@ export default function Home() {
         </aside>
         <Features />
         <HowItWorks />
-        <section className="flex w-full flex-col pt-14 mb-14">
+        <FrequentlyAskedQuestion />
+        {/* <section className="flex w-full flex-col pt-14 mb-14">
           <article className="flex w-full flex-col gap-12">
             <div className="w-full text-center">
               <h1 className="font-bold text-3xl">سوالات متداول</h1>
@@ -148,7 +150,7 @@ export default function Home() {
               </div>
             </div>
           </article>
-        </section>
+        </section> */}
         <section className="flex w-full flex-col my-16 pt-8 bg-slate-200 rounded-lg pb-4 relative">
           <div className="w-full text-center">
             <h1 className="font-bold text-3xl">نظرات مشتریان</h1>

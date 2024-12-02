@@ -1,14 +1,18 @@
 import FeaturesItems from "./FeaturesItem";
-import FeaturesHead from "./FeaturesTitle";
 
 export default function Features() {
   return (
     <section className="flex flex-col w-full gap-10 mb-14">
       <article className="flex flex-col w-full items-center gap-5">
-        <FeaturesHead
-          title="چرا از «چایی نبات» استفاده کنم؟"
-          paragraph="چون ما در چایی نبات بهت کمک می‌کنیم که لحظه‌های قشنگ رو با دوستات به اشتراک بذاری"
-        />
+        <div className="w-full text-center">
+          <p className="font-bold text-3xl">چرا از «چایی نبات» استفاده کنم؟</p>
+        </div>
+        <div className="w-full text-center">
+          <p className="text-xl">
+            چون ما در چایی نبات بهت کمک می‌کنیم که لحظه‌های قشنگ رو با دوستات به
+            اشتراک بذاری
+          </p>
+        </div>
       </article>
       <article className="flex w-full flex-col gap-10">
         <FeaturesItems

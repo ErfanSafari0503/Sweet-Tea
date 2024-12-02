@@ -1,4 +1,3 @@
-import HowItWorksTitle from "./HowItWorksTitle";
 import HowItWorksItem from "./HowItWorksItem";
 import Button from "../Reusable/Button";
 
@@ -6,10 +5,12 @@ export default function HowItWorks() {
   return (
     <section className="flex w-full flex-col mb-14">
       <article className="flex w-full flex-col gap-14">
-        <HowItWorksTitle
-          title="چجوری کار میکنه؟"
-          paragraph="توی 4 مرحله ساده چایی نبات بگیر!"
-        />
+        <div className="w-full flex flex-col items-center gap-5">
+          <p className="font-bold text-3xl">چجوری کار میکنه؟</p>
+          <p className="text-2xl opacity-70">
+            توی 4 مرحله ساده چایی نبات بگیر!
+          </p>
+        </div>
         <div className="w-full flex flex-col min-[700px]:px-20">
           <HowItWorksItem
             title="1. ثبت‌نام کن و لینک بگیر"

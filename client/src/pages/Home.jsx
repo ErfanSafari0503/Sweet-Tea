@@ -52,7 +52,7 @@ export default function Home() {
           />
         </figure>
       </header>
-      <main className="w-full py-10 px-8 xl:flex xl:py-20 xl:px-10 xl:gap-14">
+      <main className="w-full py-10 px-8 xl:py-20 xl:px-10 xl:gap-14">
         <section className="flex w-full flex-col py-14 items-center gap-8 xl:w-fit xl:bg-[url('src/images/Pattern.svg')] xl:max-w-[60%]">
           <div className="xl:self-start">
             <p className="text-4xl font-bold">چایی نبات بده، لبخند بگیر!</p>

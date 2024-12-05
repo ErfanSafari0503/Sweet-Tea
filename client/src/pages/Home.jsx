@@ -5,7 +5,43 @@ import FrequentlyAskedQuestion from "../components/Frequently_Asked_Question/Fre
 
 export default function Home() {
   return (
-    <div className="w-full font-primary">
+    <div className="w-full font-primary ">
+      <aside className="bg-slate-200 fixed h-screen z-50 max-w-[50%] hidden">
+        <div className="mx-14">
+          <ul className="flex flex-col justify-center items-center my-8 p-4 gap-10">
+            <li className="text-center">
+              <a href="#">
+                <img src="src/images/Home.svg" alt="" />
+              </a>
+            </li>
+            <li className="text-center">
+              <a className="text-xl text-center" href="#">
+                داشبورد
+              </a>
+            </li>
+            <li className="text-center">
+              <a className="text-xl" href="#">
+                سوالات متداول
+              </a>
+            </li>
+            <li className="text-center">
+              <a className="text-xl" href="#">
+                حمایت مالی
+              </a>
+            </li>
+            <li className="text-center">
+              <a className="text-xl" href="#">
+                درباره ما
+              </a>
+            </li>
+            <li className="text-center">
+              <a className="text-xl" href="#">
+                ارتباط با ما
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
       <header className="w-full p-6 bg-blue-600 xl:bg-white xl:border-b-default xl:border-b-stone-200">
         <Navbar />
         <figure className="xl:hidden">

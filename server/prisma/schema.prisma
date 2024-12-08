@@ -68,7 +68,7 @@ model gifts {
   receiver_user_id                    BigInt          @db.UnsignedBigInt
   sender_user_id                      BigInt          @db.UnsignedBigInt
   title                               String?         @db.VarChar(255)
-  nickname                            String?         @db.VarChar(30)
+  nickname                            String?         @db.VarChar(40)
   message                             String?         @db.Text
   total_price                         BigInt
   status                              gifts_status    @default(pending)
@@ -102,7 +102,7 @@ model payments {
 model products {
   id             BigInt          @id @default(autoincrement()) @db.UnsignedBigInt
   buffet_id      BigInt          @db.UnsignedBigInt
-  name           String          @db.VarChar(30)
+  name           String          @db.VarChar(40)
   size           products_size
   price          BigInt
   created_at     DateTime        @default(now()) @db.Timestamp(0)
@@ -116,14 +116,14 @@ model products {
 
 model roles {
   id         BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
-  name       String   @db.VarChar(30)
+  name       String   @db.VarChar(40)
   created_at DateTime @default(now()) @db.Timestamp(0)
   users      users[]
 }
 
 model universities {
   id         BigInt     @id @default(autoincrement()) @db.UnsignedBigInt
-  name       String     @db.VarChar(25)
+  name       String     @db.VarChar(40)
   site       String     @db.VarChar(255)
   created_at DateTime   @default(now()) @db.Timestamp(0)
   updated_at DateTime   @updatedAt @db.Timestamp(0)
@@ -135,8 +135,8 @@ model users {
   id                                  BigInt             @id @default(autoincrement()) @db.UnsignedBigInt
   role_id                             BigInt             @db.UnsignedBigInt
   university_id                       BigInt             @db.UnsignedBigInt
-  first_name                          String             @db.VarChar(20)
-  last_name                           String?            @db.VarChar(20)
+  first_name                          String             @db.VarChar(30)
+  last_name                           String?            @db.VarChar(30)
   phone_number                        String             @unique(map: "users_phone_number_unique") @db.VarChar(11)
   username                            String             @db.VarChar(40)
   telegram_chat_id                    BigInt?

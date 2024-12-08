@@ -28,7 +28,7 @@ model buffets {
   address          String             @db.VarChar(255)
   created_at       DateTime           @default(now()) @db.Timestamp(0)
   deactivated_at   DateTime?          @db.Timestamp(0)
-  updated_at       DateTime           @default(now()) @db.Timestamp(0)
+  updated_at       DateTime           @updatedAt @db.Timestamp(0)
   buffet_employees buffet_employees[]
   colleges         colleges           @relation(fields: [colleg_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "buffets_colleg_id_foreign")
   users            users              @relation(fields: [owner_user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "buffets_owner_user_id_foreign")
@@ -44,7 +44,7 @@ model colleges {
   name          String       @db.VarChar(255)
   address       String       @db.VarChar(255)
   created_at    DateTime     @default(now()) @db.Timestamp(0)
-  updated_at    DateTime     @default(now()) @db.Timestamp(0)
+  updated_at    DateTime     @updatedAt @db.Timestamp(0)
   buffets       buffets[]
   universities  universities @relation(fields: [university_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "colleges_university_id_foreign")
 
@@ -76,7 +76,7 @@ model gifts {
   scheduled_start_at                  DateTime?       @db.Timestamp(0)
   scheduled_end_at                    DateTime?       @db.Timestamp(0)
   created_at                          DateTime        @default(now()) @db.Timestamp(0)
-  updated_at                          DateTime        @default(now()) @db.Timestamp(0)
+  updated_at                          DateTime        @updatedAt @db.Timestamp(0)
   gift_products                       gift_products[]
   users_gifts_receiver_user_idTousers users           @relation("gifts_receiver_user_idTousers", fields: [receiver_user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "gifts_receiver_user_id_foreign")
   users_gifts_sender_user_idTousers   users           @relation("gifts_sender_user_idTousers", fields: [sender_user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "gifts_sender_user_id_foreign")
@@ -93,7 +93,7 @@ model payments {
   transaction_id   String          @db.VarChar(255)
   status           payments_status @default(pending)
   created_at       DateTime        @default(now()) @db.Timestamp(0)
-  updated_at       DateTime        @default(now()) @db.Timestamp(0)
+  updated_at       DateTime        @updatedAt @db.Timestamp(0)
   gifts            gifts           @relation(fields: [paymentable_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "payments_paymentable_foreign")
 
   @@index([paymentable_id], map: "payments_paymentable_foreign")
@@ -107,7 +107,7 @@ model products {
   price          BigInt
   created_at     DateTime        @default(now()) @db.Timestamp(0)
   deactivated_at DateTime?       @db.Timestamp(0)
-  updated_at     DateTime        @default(now()) @db.Timestamp(0)
+  updated_at     DateTime        @updatedAt @db.Timestamp(0)
   gift_products  gift_products[]
   buffets        buffets         @relation(fields: [buffet_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "products_buffet_id_foreign")
 
@@ -126,7 +126,7 @@ model universities {
   name       String     @db.VarChar(25)
   site       String     @db.VarChar(255)
   created_at DateTime   @default(now()) @db.Timestamp(0)
-  updated_at DateTime   @default(now()) @db.Timestamp(0)
+  updated_at DateTime   @updatedAt @db.Timestamp(0)
   colleges   colleges[]
   users      users[]
 }
@@ -143,7 +143,7 @@ model users {
   password                            String?            @db.VarChar(255)
   created_at                          DateTime           @default(now()) @db.Timestamp(0)
   deactivated_at                      DateTime?          @db.Timestamp(0)
-  updated_at                          DateTime           @default(now()) @db.Timestamp(0)
+  updated_at                          DateTime           @updatedAt @db.Timestamp(0)
   buffet_employees                    buffet_employees[]
   buffets                             buffets[]
   gifts_gifts_receiver_user_idTousers gifts[]            @relation("gifts_receiver_user_idTousers")
@@ -173,7 +173,7 @@ model wallets {
   balance             BigInt                @default(0)
   created_at          DateTime              @default(now()) @db.Timestamp(0)
   deactivated_at      DateTime?             @db.Timestamp(0)
-  updated_at          DateTime              @default(now()) @db.Timestamp(0)
+  updated_at          DateTime              @updatedAt @db.Timestamp(0)
   wallet_transactions wallet_transactions[]
   users               users                 @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "wallets_user_id_foreign")
 

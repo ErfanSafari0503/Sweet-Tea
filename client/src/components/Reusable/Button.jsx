@@ -3,10 +3,18 @@ import PropTypes from "prop-types";
 Button.propTypes = {
   styles: PropTypes.string,
   children: PropTypes.any,
-  onClick: PropTypes.any,
+  onClick: PropTypes.func,
 };
 
-export default function Button({ styles, children, onClick }) {
+function handlePreventDefault(e) {
+  e.preventdefault();
+}
+
+export default function Button({
+  styles,
+  children,
+  onClick = handlePreventDefault,
+}) {
   return (
     <button className={styles} onClick={onClick}>
       {children}

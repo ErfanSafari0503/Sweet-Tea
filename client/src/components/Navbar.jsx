@@ -1,10 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default function Navbar() {
+Navbar.propTypes = {
+  onMenuToggled: PropTypes.func,
+};
+
+export default function Navbar({ onMenuToggled }) {
   return (
     <nav className="w-full">
       <ul className="flex w-full flex-row text-base justify-between">
-        <li className="order-last xl:hidden">
+        <li className="order-last xl:hidden" onClick={onMenuToggled}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

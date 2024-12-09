@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Navbar from "../components/Navbar";
+import SideMenu from "../components/SideMenu";
 import Features from "../components/Features/Features";
 import HowItWorks from "../components/How_it_works/HowItWorks";
 import FrequentlyAskedQuestion from "../components/Frequently_Asked_Question/FrequentlyAskedQuestion";
@@ -6,46 +8,17 @@ import Comments from "../components/Comments/Comments";
 import Footer from "../components/Footer/Footer";
 
 export default function Home() {
+  const [menuToggled, setMenuToggled] = useState(false);
+
+  function handleMenuToggled() {
+    setMenuToggled(!menuToggled);
+  }
+
   return (
     <div className="w-full font-primary ">
-      <aside className="bg-slate-200 fixed h-screen z-50 max-w-[50%] hidden">
-        <div className="mx-14">
-          <ul className="flex flex-col justify-center items-center my-8 p-4 gap-10">
-            <li className="text-center">
-              <a href="#">
-                <img src="src/images/Home.svg" alt="" />
-              </a>
-            </li>
-            <li className="text-center">
-              <a className="text-xl text-center" href="#">
-                داشبورد
-              </a>
-            </li>
-            <li className="text-center">
-              <a className="text-xl" href="#">
-                سوالات متداول
-              </a>
-            </li>
-            <li className="text-center">
-              <a className="text-xl" href="#">
-                حمایت مالی
-              </a>
-            </li>
-            <li className="text-center">
-              <a className="text-xl" href="#">
-                درباره ما
-              </a>
-            </li>
-            <li className="text-center">
-              <a className="text-xl" href="#">
-                ارتباط با ما
-              </a>
-            </li>
-          </ul>
-        </div>
-      </aside>
+      <SideMenu isOpen={menuToggled} />
       <header className="w-full p-6 bg-blue-600 xl:bg-white xl:border-b-default xl:border-b-stone-200">
-        <Navbar />
+        <Navbar onMenuToggled={handleMenuToggled} />
         <figure className="xl:hidden">
           <img
             className="m-auto relative top-12"

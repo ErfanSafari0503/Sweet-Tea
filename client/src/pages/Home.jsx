@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Features from "../components/Features/Features";
 import HowItWorks from "../components/How_it_works/HowItWorks";
 import FrequentlyAskedQuestion from "../components/Frequently_Asked_Question/FrequentlyAskedQuestion";
+import Comments from "../components/Comments/Comments";
 
 export default function Home() {
   return (
@@ -121,75 +122,7 @@ export default function Home() {
         <Features />
         <HowItWorks />
         <FrequentlyAskedQuestion />
-        <section className="flex w-full flex-col my-16 pt-8 bg-slate-200 rounded-lg pb-4 relative">
-          <div className="w-full text-center">
-            <h1 className="font-bold text-3xl">نظرات مشتریان</h1>
-          </div>
-          {/* slider */}
-          <article className="flex w-full pt-8 pb-4 overflow-hidden">
-            {/* slide 1 */}
-            <div className="flex shrink-0 w-full flex-col gap-12">
-              <div className="w-full flex flex-col gap-6 items-center">
-                <div>
-                  <img
-                    className="size-14"
-                    src="src/images/quote-1.svg"
-                    alt=""
-                  />
-                </div>
-                <div className="w-full px-10 text-center">
-                  <p className="opacity-70 text-xl">
-                    من به تازگی از وبسایتتون استفاده کردم و واقعاً از راحتی و
-                    سادگی اون شگفت‌زده شدم. سفارش‌دادن خیلی آسون بود و همه‌چیز
-                    به کاملا مشخص بود.به همین دلیل تصمیم گرفتم این وبسایت را به
-                    یکی از دوستام هم تو دانشگاه معرفی کنم. مطمئنم اونم از تجربه
-                    خریدش لذت میبره!
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-center px-10">
-                <div className="flex flex-col items-center gap-4 order-2">
-                  <img className="size-16" src="src/images/Avatar.svg" alt="" />
-                  <caption className="text-xl font-bold">رضا اکبری</caption>
-                </div>
-              </div>
-            </div>
-            {/* slide 2 */}
-            <div className="flex shrink-0 w-full flex-col gap-12">
-              <div className="w-full flex flex-col gap-6 items-center">
-                <div>
-                  <img
-                    className="size-14"
-                    src="src/images/quote-1.svg"
-                    alt=""
-                  />
-                </div>
-                <div className="w-full px-10 text-center">
-                  <p className="opacity-70 text-xl">
-                    من به تازگی از وبسایتتون استفاده کردم و واقعاً از راحتی و
-                    سادگی اون شگفت‌زده شدم. سفارش‌دادن خیلی آسون بود و همه‌چیز
-                    به کاملا مشخص بود.به همین دلیل تصمیم گرفتم این وبسایت را به
-                    یکی از دوستام هم تو دانشگاه معرفی کنم. مطمئنم اونم از تجربه
-                    خریدش لذت میبره!
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-center px-10">
-                <div className="flex flex-col items-center gap-4 order-2">
-                  <img className="size-16" src="src/images/Avatar.svg" alt="" />
-                  <caption className="text-xl font-bold">رضا اکبری</caption>
-                </div>
-              </div>
-            </div>
-            {/* slide... */}
-          </article>
-          <button className="btn-left absolute left-8 bottom-16">
-            <img className="size-10" src="src/images/Left.svg" alt="" />
-          </button>
-          <button className="btn-right absolute right-8 bottom-16">
-            <img className="size-10" src="src/images/Right.svg" alt="" />
-          </button>
-        </section>
+        <Comments />
       </main>
       <footer className="w-full py-4 px-8 bg-blue-50 relative">
         <button className="absolute p-4 bg-blue-600 rounded-full left-6 -top-10">

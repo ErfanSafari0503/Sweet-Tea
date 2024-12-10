@@ -1,13 +1,24 @@
+import { useState } from "react";
 import Navbar from "../components/Navbar";
+import SideMenu from "../components/SideMenu";
 import Features from "../components/Features/Features";
 import HowItWorks from "../components/How_it_works/HowItWorks";
 import FrequentlyAskedQuestion from "../components/Frequently_Asked_Question/FrequentlyAskedQuestion";
+import Comments from "../components/Comments/Comments";
+import Footer from "../components/Footer/Footer";
 
 export default function Home() {
+  const [menuToggled, setMenuToggled] = useState(false);
+
+  function handleMenuToggled() {
+    setMenuToggled(!menuToggled);
+  }
+
   return (
-    <div className="w-full font-primary">
+    <div className="w-full font-primary ">
+      <SideMenu isOpen={menuToggled} />
       <header className="w-full p-6 bg-blue-600 xl:bg-white xl:border-b-default xl:border-b-stone-200">
-        <Navbar />
+        <Navbar onMenuToggled={handleMenuToggled} />
         <figure className="xl:hidden">
           <img
             className="m-auto relative top-12"
@@ -85,136 +96,9 @@ export default function Home() {
         <Features />
         <HowItWorks />
         <FrequentlyAskedQuestion />
-        <section className="flex w-full flex-col my-16 pt-8 bg-slate-200 rounded-lg pb-4 relative">
-          <div className="w-full text-center">
-            <h1 className="font-bold text-3xl">نظرات مشتریان</h1>
-          </div>
-          {/* slider */}
-          <article className="flex w-full pt-8 pb-4 overflow-hidden">
-            {/* slide 1 */}
-            <div className="flex shrink-0 w-full flex-col gap-12">
-              <div className="w-full flex flex-col gap-6 items-center">
-                <div>
-                  <img
-                    className="size-14"
-                    src="src/images/quote-1.svg"
-                    alt=""
-                  />
-                </div>
-                <div className="w-full px-10 text-center">
-                  <p className="opacity-70 text-xl">
-                    من به تازگی از وبسایتتون استفاده کردم و واقعاً از راحتی و
-                    سادگی اون شگفت‌زده شدم. سفارش‌دادن خیلی آسون بود و همه‌چیز
-                    به کاملا مشخص بود.به همین دلیل تصمیم گرفتم این وبسایت را به
-                    یکی از دوستام هم تو دانشگاه معرفی کنم. مطمئنم اونم از تجربه
-                    خریدش لذت میبره!
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-center px-10">
-                <div className="flex flex-col items-center gap-4 order-2">
-                  <img className="size-16" src="src/images/Avatar.svg" alt="" />
-                  <caption className="text-xl font-bold">رضا اکبری</caption>
-                </div>
-              </div>
-            </div>
-            {/* slide 2 */}
-            <div className="flex shrink-0 w-full flex-col gap-12">
-              <div className="w-full flex flex-col gap-6 items-center">
-                <div>
-                  <img
-                    className="size-14"
-                    src="src/images/quote-1.svg"
-                    alt=""
-                  />
-                </div>
-                <div className="w-full px-10 text-center">
-                  <p className="opacity-70 text-xl">
-                    من به تازگی از وبسایتتون استفاده کردم و واقعاً از راحتی و
-                    سادگی اون شگفت‌زده شدم. سفارش‌دادن خیلی آسون بود و همه‌چیز
-                    به کاملا مشخص بود.به همین دلیل تصمیم گرفتم این وبسایت را به
-                    یکی از دوستام هم تو دانشگاه معرفی کنم. مطمئنم اونم از تجربه
-                    خریدش لذت میبره!
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-center px-10">
-                <div className="flex flex-col items-center gap-4 order-2">
-                  <img className="size-16" src="src/images/Avatar.svg" alt="" />
-                  <caption className="text-xl font-bold">رضا اکبری</caption>
-                </div>
-              </div>
-            </div>
-            {/* slide... */}
-          </article>
-          <button className="btn-left absolute left-8 bottom-16">
-            <img className="size-10" src="src/images/Left.svg" alt="" />
-          </button>
-          <button className="btn-right absolute right-8 bottom-16">
-            <img className="size-10" src="src/images/Right.svg" alt="" />
-          </button>
-        </section>
+        <Comments />
       </main>
-      <footer className="w-full py-4 px-8 bg-blue-50 relative">
-        <button className="absolute p-4 bg-blue-600 rounded-full left-6 -top-10">
-          <img className="size-10" src="src/images/Up.svg" alt="" />
-        </button>
-        <article className="flex flex-col w-full gap-10 my-4 pb-4 border-b-default border-slate-400">
-          <div className="px-4 py-2 bg-blue-200 rounded-lg xl:bg-slate-200 max-w-fit">
-            چایی نبات
-          </div>
-          <div className="">
-            <p className="opacity-70 text-xl text-right">
-              چای نبات هدیه بده و یه خاطره به‌یادموندنی واسه دوستات بساز. سفارش
-              بده تا چای گرم و خوش‌عطرشون تو بوفه دانشگاه برسه به دستشون.
-            </p>
-          </div>
-          <div className="w-full flex justify-center">
-            <ul className="flex space-x-4">
-              <li className="pr-3 text-base flex items-center">
-                <a href="#">سوالات متداول</a>
-                <span className="border-l-default border-slate-400 p-3"></span>
-              </li>
-              <li className="pr-3 text-base flex items-center">
-                <a href="#">حمایت مالی</a>
-                <span className="border-l-default border-slate-400 p-3"></span>
-              </li>
-              <li className="pr-3 text-base flex items-center">
-                <a href="#">ارتباط با ما</a>
-                <span className="border-l-default border-slate-400 p-3  "></span>
-              </li>
-              <li className="pr-3 text-base">
-                <a href="#">درباره ما</a>
-              </li>
-            </ul>
-          </div>
-          <div className="flex justify-between">
-            <div className="flex gap-4">
-              <img className="size-6" src="src/images/telegram.svg" alt="" />
-              <img className="size-6" src="src/images/instagram.svg" alt="" />
-            </div>
-            <div className="flex gap-4 items-center">
-              <caption className="text-base opacity-70">
-                SweetTea@gmail.com
-              </caption>
-              <img className="size-6" src="src/images/subtract.svg" alt="" />
-            </div>
-          </div>
-          <div className="flex justify-between">
-            <div className="px-24 py-12 bg-slate-200 rounded-lg text-xs">
-              مجوز
-            </div>
-            <div className="px-24 py-12 bg-slate-200 rounded-lg text-xs">
-              مجوز
-            </div>
-          </div>
-        </article>
-        <div className="w-full text-center">
-          <span className="opacity-50 text-sm">
-            © تمامی حقوق این وب‌سایت متعلق به چایی‌نبات میباشد.
-          </span>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

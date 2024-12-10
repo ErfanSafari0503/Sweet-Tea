@@ -2,9 +2,22 @@ import PropTypes from "prop-types";
 
 Button.propTypes = {
   styles: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.any,
+  onClick: PropTypes.func,
 };
 
-export default function Button({ styles, children }) {
-  return <button className={styles}>{children}</button>;
+function handlePreventDefault(e) {
+  e.preventdefault();
+}
+
+export default function Button({
+  styles,
+  children,
+  onClick = handlePreventDefault,
+}) {
+  return (
+    <button className={styles} onClick={onClick}>
+      {children}
+    </button>
+  );
 }

@@ -1,10 +1,9 @@
-const express = require("express");
-const app = express();
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
 
-app.get("/api", (req, res) => {
-  res.json({ users: ["Erfan", "Ali"] });
-});
+const app = require("./app");
 
-app.listen(8384, () => {
-  console.log("Server started on port 8384");
+const port = process.env.PORT || 8384;
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
 });

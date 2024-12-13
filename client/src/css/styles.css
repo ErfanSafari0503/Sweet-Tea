@@ -7,6 +7,11 @@
     src: url("../fonts/IranSansX Pro/Farsi numerals/Webfonts/fonts/Woff2/IRANSansXFaNum-Regular.woff2")
       format("woff2");
   }
+  @font-face {
+    font-family: "PelakFA";
+    src: url("../fonts/PELAK-Economic/Farsi Numeral/webfonts/woff2/PelakFA-Regular.woff2")
+      format("woff2");
+  }
 }
 html {
   font-size: 10px;
@@ -36,4 +41,9 @@ div.steps:not(.without):after {
   );
   left: 50%;
   transform: translateX(-50%);
+}
+li.activated {
+  background-color: rgb(254 243 199);
+  border-radius: 2rem;
+  padding: 1rem 0.75rem;
 }

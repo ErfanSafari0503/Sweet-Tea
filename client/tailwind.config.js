@@ -7,7 +7,7 @@ export default {
         default: "1px",
       },
       fontFamily: {
-        primary: ["IRANSans"],
+        primary: ["PelakFA"],
       },
     },
   },

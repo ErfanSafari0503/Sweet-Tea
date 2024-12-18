@@ -8,15 +8,11 @@ Button.propTypes = {
   isDisabled: PropTypes.bool,
 };
 
-function handlePreventDefault(e) {
-  e.preventdefault();
-}
-
 export default function Button({
   styles,
   type = "button",
   children,
-  onClick = handlePreventDefault,
+  onClick = () => {},
   isDisabled = false,
 }) {
   return (

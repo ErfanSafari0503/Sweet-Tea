@@ -29,7 +29,7 @@ export default function Dashboard() {
               <div className="w-1/5 order-1">
                 <img
                   src="src/images/Wallet.svg"
-                  className="absolute size-max -top-16 -right-16"
+                  className="absolute size-max -top-16 -right-16 min-[500px]:-top-8 min-[500px]:-right-8"
                   alt=""
                 />
               </div>
@@ -59,20 +59,11 @@ export default function Dashboard() {
                   </span>
                   چایی نبات تو جیبته !
                 </h2>
-                <div className="w-full">
-                  <input
-                    dir="ltr"
-                    type="range"
-                    id="volume"
-                    name="volume"
-                    min="0"
-                    max="50"
-                    className="w-full h-2 rounded-2xl appearance-none bg-gradient-to-r from-[#86422c] to-[#f5eee6] accent-[#86422c]
-           focus:outline-none"
-                  />
+                <div className="w-full relative">
+                  <input type="range" class="custom-range" min="0" max="100" />
                 </div>
                 <div className="w-full flex justify-between">
-                  <div className="px-12 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200 text-center">
+                  <div className="px-6 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200 text-center">
                     <span className="text-2xl font-bold">دمش کن</span>
                   </div>
                   <div className="px-6 py-2 text-white bg-[#86422c] rounded-2xl xl:bg-slate-200 flex justify-center items-center">
@@ -90,7 +81,7 @@ export default function Dashboard() {
                   <img src="src/images/eye.svg" className="size-12" alt="" />
                 </div>
                 <div className="flex flex-col mx-4">
-                  <span className="text-lg">تعداد بازدید</span>
+                  <span className="text-md">تعداد بازدید</span>
                   <span className="text-xl font-bold">4</span>
                 </div>
                 <div className="mr-auto">
@@ -102,7 +93,7 @@ export default function Dashboard() {
                   <img src="src/images/balon.svg" className="size-12" alt="" />
                 </div>
                 <div className="flex flex-col mx-4">
-                  <span className="text-lg">تعداد چایی دریافتی</span>
+                  <span className="text-md">تعداد چایی دریافتی</span>
                   <span className="text-xl font-bold">16</span>
                 </div>
                 <div className="mr-auto">
@@ -118,7 +109,7 @@ export default function Dashboard() {
                   />
                 </div>
                 <div className="flex flex-col mx-4">
-                  <span className="text-lg">تعداد چایی ارسالی</span>
+                  <span className="text-md">تعداد چایی ارسالی</span>
                   <span className="text-xl font-bold">8</span>
                 </div>
                 <div className="mr-auto">

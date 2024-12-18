@@ -50,3 +50,42 @@ li.activated {
 input::placeholder {
   text-align: right;
 }
+
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 0.5rem;
+  background: #fdf8eb; /* Light background track */
+  border-radius: 0.3125rem;
+  outline: none;
+  border: none;
+}
+.custom-range::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  border-radius: 0.3125rem;
+  background: linear-gradient(to right, #95563a 50%, #fdf8eb 50%);
+}
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove default thumb */
+  appearance: none;
+  width: 2.5rem; /* Thumb size */
+  height: 2.5rem;
+  background: url("../images/Progress-Indicator.svg") no-repeat center center;
+  background-size: contain; /* Ensure image fits the thumb */
+  cursor: pointer; /* Ensure thumb is draggable */
+  margin-top: -1rem; /* Align thumb vertically with track */
+}
+.custom-range::-moz-range-thumb {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: url("../images/Progress-Indicator.svg") no-repeat center center;
+  background-size: contain; /* Ensures the image scales */
+  border: none;
+  cursor: pointer;
+}
+.custom-range::-moz-range-track {
+  height: 0.5rem;
+  background: #fdf8eb;
+  border-radius: 5px;
+}

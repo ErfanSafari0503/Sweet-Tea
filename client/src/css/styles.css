@@ -47,3 +47,6 @@ li.activated {
   border-radius: 2rem;
   padding: 1rem 0.75rem;
 }
+input::placeholder {
+  text-align: right;
+}

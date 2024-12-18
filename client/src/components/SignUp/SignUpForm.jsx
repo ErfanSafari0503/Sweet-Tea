@@ -5,29 +5,35 @@ import Input from "../Reusable/Input";
 import Button from "../Reusable/Button";
 
 export default function SignUpForm() {
-  // university
   const initialState = {
     firstName: "",
     lastName: "",
-    gender: "",
     username: "",
+    gender: "select",
     phoneNumber: "",
+    university: "",
     password: "",
     confirmPassword: "",
     isLoading: false,
-    error: null,
+    error: {},
   };
 
   function reducer(state, action) {
     switch (action.type) {
       case "NEW_DATA":
         return { ...state, [action.payload.name]: action.payload.value };
-      case "NEW_ERROR":
-        return { ...state, isLoading: false, error: action.payload.value };
       case "START":
-        return { ...state, isLoading: true, error: null };
+        return { ...state, isLoading: true, error: {} };
       case "SUCCESS":
         return { initialState };
+      case "NEW_ERROR":
+        return {
+          ...state,
+          error: {
+            ...state.error,
+            [action.payload.field]: action.payload.value,
+          },
+        };
       default:
         throw new Error("Unknown action type");
     }
@@ -47,26 +53,37 @@ export default function SignUpForm() {
       if (!/^[\u0600-\u06FF\s]+$/.test(value)) {
         dispatch({
           type: "NEW_ERROR",
-          payload: { value: "Only persian letters are allowed." },
-        });
-        return;
-      }
-    } else if (name === "username") {
-      if (!/^[a-zA-Z0-9_]+$/.test(value)) {
-        dispatch({
-          type: "SUBMIT_ERROR",
           payload: {
-            value:
-              "نام کاربری فقط می‌تواند شامل حروف انگلیسی، اعداد و کاراکتر زیرخط (_) باشد.",
+            field: name + "Entery",
+            value: "Only persian letters are allowed.",
           },
         });
         return;
       }
-    } else if (name === "phoneNumber") {
+    }
+
+    if (name === "username") {
+      if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+        dispatch({
+          type: "NEW_ERROR",
+          payload: {
+            field: "usernameEntery",
+            value:
+              "Username can only contain English letters, numbers, and the underscore (_) character.",
+          },
+        });
+        return;
+      }
+    }
+
+    if (name === "phoneNumber") {
       if (!/^09\d+$/.test(value)) {
         dispatch({
           type: "NEW_ERROR",
-          payload: { value: "Only numbers are allowed. (must start with 09)" },
+          payload: {
+            field: "phoneNumberEntery",
+            value: "Only numbers are allowed (must start with 09).",
+          },
         });
         return;
       }
@@ -75,52 +92,84 @@ export default function SignUpForm() {
     dispatch({ type: "NEW_DATA", payload: { name, value } });
   }
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
+
     if (
       !state.firstName ||
       !state.lastName ||
-      !state.gender ||
       !state.username ||
+      state.gender === "select" ||
       !state.phoneNumber ||
       !state.password ||
       !state.confirmPassword
     ) {
       dispatch({
         type: "NEW_ERROR",
-        payload: { value: "All fields are required!" },
+        payload: {
+          field: "requiredFields",
+          value: "All fields are required!",
+        },
       });
       return;
-    } else if (state.firstName.length > 30) {
+    }
+
+    if (state.firstName.length > 30) {
       dispatch({
         type: "NEW_ERROR",
-        payload: { value: "First name is too large!" },
+        payload: {
+          field: "firstName",
+          value: "First name is too large!",
+        },
       });
       return;
-    } else if (state.lastName.length > 30) {
+    }
+
+    if (state.lastName.length > 30) {
       dispatch({
         type: "NEW_ERROR",
-        payload: { value: "Last name is too large!" },
+        payload: {
+          field: "lastName",
+          value: "Last name is too large!",
+        },
       });
       return;
-    } else if (state.username.length > 40) {
+    }
+
+    if (state.username.length > 40) {
       dispatch({
         type: "NEW_ERROR",
-        payload: { value: "Username is too large!" },
+        payload: {
+          field: "username",
+          value: "Username is too large!",
+        },
       });
       return;
-    } else if (state.phoneNumber.length > 11) {
+    }
+
+    if (state.phoneNumber.length > 11) {
       dispatch({
         type: "NEW_ERROR",
-        payload: { value: "Phone number is too large!" },
+        payload: {
+          field: "phoneNumber",
+          value: "Phone number is too large!",
+        },
       });
       return;
-    } else if (state.password.length > 255) {
+    }
+
+    if (state.password.length > 255) {
       dispatch({
         type: "NEW_ERROR",
-        payload: { value: "Password is too large!" },
+        payload: {
+          field: "password",
+          value: "Password is too large!",
+        },
       });
       return;
-    } else if (
+    }
+
+    if (
       !/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
         state.password
       )
@@ -128,47 +177,60 @@ export default function SignUpForm() {
       dispatch({
         type: "NEW_ERROR",
         payload: {
+          field: "password",
           value:
             "Password must be at least 8 characters long, including an uppercase letter, a number, and a special character.",
         },
       });
       return;
-    } else if (state.password !== state.confirmPassword) {
+    }
+
+    if (state.password !== state.confirmPassword) {
       dispatch({
         type: "NEW_ERROR",
-        payload: { value: "Passwords do not match!" },
+        payload: {
+          field: "password",
+          value: "Passwords do not match!",
+        },
       });
       return;
     }
 
     dispatch({ type: "START" });
 
-    try {
-      const response = await axios.post("https://localhost:8384/api/signup", {
+    axios
+      .post("https://localhost:8384/api/sign-up", {
         firstName: state.firstName,
         lastName: state.lastName,
-        gender: state.gender,
         username: state.username,
+        gender: state.gender,
         phoneNumber: state.phoneNumber,
+        university: state.university,
         password: state.password,
+      })
+      .then((response) => {
+        if (response.status === 200 || response.status === 201) {
+          dispatch({ type: "SUCCESS" });
+        } else {
+          dispatch({
+            type: "NEW_ERROR",
+            payload: {
+              field: "server",
+              value: "Unexpected response from the server.",
+            },
+          });
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: "NEW_ERROR",
+          payload: {
+            field: err.response ? "server" : "network",
+            value:
+              err.response?.data?.message || "An unexpected error occurred.",
+          },
+        });
       });
-
-      if (response.status === 200 || response.status === 201) {
-        dispatch({ type: "SUCCESS" });
-      } else {
-        throw new Error("Failed to sign up!");
-      }
-    } catch (error) {
-      dispatch({
-        type: "NEW_ERROR",
-        payload: {
-          value:
-            error.response?.data?.message ||
-            error.message ||
-            "An error occurred",
-        },
-      });
-    }
   }
 
   return (
@@ -190,6 +252,9 @@ export default function SignUpForm() {
             value={state.firstName}
             onChange={handleChange}
           />
+          {state.error.firstName && (
+            <span className="">{state.error.firstName}</span>
+          )}
         </div>
         <div className="flex flex-col justify-around gap-2">
           <label htmlFor="Login-Last-Name-Input">نام خانوادگی</label>
@@ -202,18 +267,9 @@ export default function SignUpForm() {
             value={state.lastName}
             onChange={handleChange}
           />
-        </div>
-        <div className="flex flex-col justify-around gap-2">
-          <label htmlFor="Login-Gender-Input">جنسیت</label>
-          <select
-            id="Login-Gender-Input"
-            name="gender"
-            className="border-default border-stone-400 text-right p-2 rounded-lg"
-          >
-            <option value="male">مرد</option>
-            <option value="female">زن</option>
-            <option value="other">دیگر</option>
-          </select>
+          {state.error.lastName && (
+            <span className="">{state.error.lastName}</span>
+          )}
         </div>
         <div className="flex flex-col justify-around gap-2">
           <label htmlFor="Login-Username-Input">نام کاربری</label>
@@ -226,6 +282,27 @@ export default function SignUpForm() {
             value={state.username}
             onChange={handleChange}
           />
+          {state.error.username && (
+            <span className="">{state.error.username}</span>
+          )}
+        </div>
+        <div className="flex flex-col justify-around gap-2">
+          <label htmlFor="Login-Gender-Input">جنسیت</label>
+          <select
+            id="Login-Gender-Input"
+            name="gender"
+            value={state.gender}
+            onChange={handleChange}
+            className="border-default border-stone-400 text-right p-2 rounded-lg"
+          >
+            <option value="select" hidden={state.gender !== "select"}>
+              انتخاب کنید
+            </option>
+            <option value="male">مرد</option>
+            <option value="female">زن</option>
+            <option value="other">دیگر</option>
+          </select>
+          {state.error.gender && <span className="">{state.error.gender}</span>}
         </div>
         <div className="flex flex-col justify-around gap-2">
           <label htmlFor="Login-Number-Input">شماره موبایل</label>
@@ -238,6 +315,9 @@ export default function SignUpForm() {
             value={state.phoneNumber}
             onChange={handleChange}
           />
+          {state.error.phoneNumber && (
+            <span className="">{state.error.phoneNumber}</span>
+          )}
         </div>
         <div className="flex flex-col justify-around gap-2">
           <label htmlFor="Login-Password-Input">کلمه عبور</label>
@@ -250,6 +330,9 @@ export default function SignUpForm() {
             value={state.password}
             onChange={handleChange}
           />
+          {state.error.password && (
+            <span className="">{state.error.password}</span>
+          )}
           <span className="text-gray-500">باید حداقل هشت کاراکتر باشد</span>
         </div>
         <div className="flex flex-col justify-around gap-2">
@@ -263,13 +346,16 @@ export default function SignUpForm() {
             value={state.confirmPassword}
             onChange={handleChange}
           />
+          {state.error.confirmPassword && (
+            <span className="">{state.error.confirmPassword}</span>
+          )}
         </div>
       </div>
       <div className="flex flex-col grow justify-end gap-2">
         <Button
           styles="w-full bg-sky-600 p-2 rounded-lg text-zinc-50"
           type="submit"
-          isDisabled={state.loading}
+          isDisabled={state.isLoading}
         >
           ثبت نام
         </Button>

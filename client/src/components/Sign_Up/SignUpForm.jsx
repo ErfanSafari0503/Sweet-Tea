@@ -1,17 +1,18 @@
 import { useReducer } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../Reusable/Input";
 import Button from "../Reusable/Button";
 
 export default function SignUpForm() {
+  const navigate = useNavigate();
+
   const initialState = {
     firstName: "",
     lastName: "",
     username: "",
     gender: "select",
     phoneNumber: "",
-    university: "",
     password: "",
     confirmPassword: "",
     isLoading: false,
@@ -77,12 +78,12 @@ export default function SignUpForm() {
     }
 
     if (name === "phoneNumber") {
-      if (!/^09\d+$/.test(value)) {
+      if (!/^\d*$/.test(value)) {
         dispatch({
           type: "NEW_ERROR",
           payload: {
             field: "phoneNumberEntery",
-            value: "Only numbers are allowed (must start with 09).",
+            value: "Only numbers are allowed.",
           },
         });
         return;
@@ -198,19 +199,19 @@ export default function SignUpForm() {
 
     dispatch({ type: "START" });
 
-    axios
+    await axios
       .post("https://localhost:8384/api/sign-up", {
         firstName: state.firstName,
         lastName: state.lastName,
         username: state.username,
         gender: state.gender,
         phoneNumber: state.phoneNumber,
-        university: state.university,
         password: state.password,
       })
       .then((response) => {
         if (response.status === 200 || response.status === 201) {
           dispatch({ type: "SUCCESS" });
+          navigate("/sign-in");
         } else {
           dispatch({
             type: "NEW_ERROR",
@@ -252,6 +253,7 @@ export default function SignUpForm() {
             value={state.firstName}
             onChange={handleChange}
           />
+          {!state.firstName && <span className="">فقط حروف فارسی</span>}
           {state.error.firstName && (
             <span className="">{state.error.firstName}</span>
           )}
@@ -267,6 +269,7 @@ export default function SignUpForm() {
             value={state.lastName}
             onChange={handleChange}
           />
+          {!state.lastName && <span className="">فقط حروف فارسی</span>}
           {state.error.lastName && (
             <span className="">{state.error.lastName}</span>
           )}
@@ -282,6 +285,7 @@ export default function SignUpForm() {
             value={state.username}
             onChange={handleChange}
           />
+          {/* {!state.username && <span className=""></span>} */}
           {state.error.username && (
             <span className="">{state.error.username}</span>
           )}
@@ -315,6 +319,7 @@ export default function SignUpForm() {
             value={state.phoneNumber}
             onChange={handleChange}
           />
+          {/* {!state.lastName && <span className="">09*********</span>} */}
           {state.error.phoneNumber && (
             <span className="">{state.error.phoneNumber}</span>
           )}
@@ -330,10 +335,10 @@ export default function SignUpForm() {
             value={state.password}
             onChange={handleChange}
           />
+          {/* {!state.lastName && <span className=""></span>} */}
           {state.error.password && (
             <span className="">{state.error.password}</span>
           )}
-          <span className="text-gray-500">باید حداقل هشت کاراکتر باشد</span>
         </div>
         <div className="flex flex-col justify-around gap-2">
           <label htmlFor="Login-Password-Checker-Input">تایید کلمه عبور</label>

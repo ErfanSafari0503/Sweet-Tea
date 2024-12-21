@@ -4,43 +4,42 @@ import axios from "axios";
 import Input from "../Reusable/Input";
 import Button from "../Reusable/Button";
 
-export default function SignUpForm() {
-  const navigate = useNavigate();
+const initialState = {
+  firstName: "",
+  lastName: "",
+  username: "",
+  gender: "select",
+  phoneNumber: "",
+  password: "",
+  confirmPassword: "",
+  isLoading: false,
+  error: {},
+};
 
-  const initialState = {
-    firstName: "",
-    lastName: "",
-    username: "",
-    gender: "select",
-    phoneNumber: "",
-    password: "",
-    confirmPassword: "",
-    isLoading: false,
-    error: {},
-  };
-
-  function reducer(state, action) {
-    switch (action.type) {
-      case "NEW_DATA":
-        return { ...state, [action.payload.name]: action.payload.value };
-      case "START":
-        return { ...state, isLoading: true, error: {} };
-      case "SUCCESS":
-        return { initialState };
-      case "NEW_ERROR":
-        return {
-          ...state,
-          error: {
-            ...state.error,
-            [action.payload.field]: action.payload.value,
-          },
-        };
-      default:
-        throw new Error("Unknown action type");
-    }
+function reducer(state, action) {
+  switch (action.type) {
+    case "NEW_DATA":
+      return { ...state, [action.payload.name]: action.payload.value };
+    case "START":
+      return { ...state, isLoading: true, error: {} };
+    case "SUCCESS":
+      return { initialState };
+    case "NEW_ERROR":
+      return {
+        ...state,
+        error: {
+          ...state.error,
+          [action.payload.field]: action.payload.value,
+        },
+      };
+    default:
+      throw new Error("Unknown action type");
   }
+}
 
+export default function SignUpForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -201,12 +200,15 @@ export default function SignUpForm() {
 
     await axios
       .post("https://localhost:8384/api/sign-up", {
-        firstName: state.firstName,
-        lastName: state.lastName,
-        username: state.username,
-        gender: state.gender,
-        phoneNumber: state.phoneNumber,
-        password: state.password,
+        status: "success",
+        data: {
+          firstName: state.firstName,
+          lastName: state.lastName,
+          username: state.username,
+          gender: state.gender,
+          phoneNumber: state.phoneNumber,
+          password: state.password,
+        },
       })
       .then((response) => {
         if (response.status === 200 || response.status === 201) {

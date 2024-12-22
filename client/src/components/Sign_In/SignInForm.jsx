@@ -1,8 +1,8 @@
 import { useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import Input from "../Reusable/Input";
 import Button from "../Reusable/Button";
-import axios from "axios";
 
 const initialState = {
   phoneNumber: "",
@@ -109,38 +109,42 @@ export default function SignInForm() {
 
     dispatch({ type: "START" });
 
-    await axios
-      .post("https://localhost:8384/api/sign-in", {
-        status: "success",
-        data: {
-          phoneNumber: state.phoneNumber,
-          password: state.password,
-        },
-      })
-      .then((response) => {
-        if (response.status === 200 || response.status === 201) {
-          dispatch({ type: "SUCCESS" });
-          navigate("/dashboard");
-        } else {
+    try {
+      await axios
+        .post("https://localhost:8384/api/sign-in", {
+          status: "success",
+          data: {
+            phoneNumber: state.phoneNumber,
+            password: state.password,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200 || response.status === 201) {
+            dispatch({ type: "SUCCESS" });
+            navigate("/dashboard");
+          } else {
+            dispatch({
+              type: "NEW_ERROR",
+              payload: {
+                field: "server",
+                value: "Unexpected response from the server.",
+              },
+            });
+          }
+        })
+        .catch((err) => {
           dispatch({
             type: "NEW_ERROR",
             payload: {
-              field: "server",
-              value: "Unexpected response from the server.",
+              field: err.response ? "server" : "network",
+              value:
+                err.response?.data?.message || "An unexpected error occurred.",
             },
           });
-        }
-      })
-      .catch((err) => {
-        dispatch({
-          type: "NEW_ERROR",
-          payload: {
-            field: err.response ? "server" : "network",
-            value:
-              err.response?.data?.message || "An unexpected error occurred.",
-          },
         });
-      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

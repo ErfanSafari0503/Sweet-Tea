@@ -198,42 +198,46 @@ export default function SignUpForm() {
 
     dispatch({ type: "START" });
 
-    await axios
-      .post("https://localhost:8384/api/sign-up", {
-        status: "success",
-        data: {
-          firstName: state.firstName,
-          lastName: state.lastName,
-          username: state.username,
-          gender: state.gender,
-          phoneNumber: state.phoneNumber,
-          password: state.password,
-        },
-      })
-      .then((response) => {
-        if (response.status === 200 || response.status === 201) {
-          dispatch({ type: "SUCCESS" });
-          navigate("/sign-in");
-        } else {
+    try {
+      await axios
+        .post("https://localhost:8384/api/sign-up", {
+          status: "success",
+          data: {
+            firstName: state.firstName,
+            lastName: state.lastName,
+            username: state.username,
+            gender: state.gender,
+            phoneNumber: state.phoneNumber,
+            password: state.password,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200 || response.status === 201) {
+            dispatch({ type: "SUCCESS" });
+            navigate("/sign-in");
+          } else {
+            dispatch({
+              type: "NEW_ERROR",
+              payload: {
+                field: "server",
+                value: "Unexpected response from the server.",
+              },
+            });
+          }
+        })
+        .catch((err) => {
           dispatch({
             type: "NEW_ERROR",
             payload: {
-              field: "server",
-              value: "Unexpected response from the server.",
+              field: err.response ? "server" : "network",
+              value:
+                err.response?.data?.message || "An unexpected error occurred.",
             },
           });
-        }
-      })
-      .catch((err) => {
-        dispatch({
-          type: "NEW_ERROR",
-          payload: {
-            field: err.response ? "server" : "network",
-            value:
-              err.response?.data?.message || "An unexpected error occurred.",
-          },
         });
-      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

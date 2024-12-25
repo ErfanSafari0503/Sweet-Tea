@@ -89,3 +89,25 @@ input::placeholder {
   background: #fdf8eb;
   border-radius: 5px;
 }
+.gradient-border {
+  background: radial-gradient(circle, white 50%, transparent 50%),
+    conic-gradient(#e66a17, white);
+  /* conic-gradient(from 90deg, #f97316, #ffffff) 20% */
+}
+.spinner {
+  border-radius: 50%;
+  background: radial-gradient(circle, white 50%, transparent 50%),
+    conic-gradient(from 0deg, white, #e66a17);
+  position: relative;
+}
+.spinner::before {
+  content: "";
+  position: absolute;
+  width: 0.55rem;
+  height: 0.55rem;
+  top: 7%;
+  left: 50%;
+  background-color: #e66a17;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}

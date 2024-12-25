@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         primary: ["PelakFA"],
       },
+      colors: {
+        primary: "#E66A17",
+      },
     },
   },
   plugins: [],

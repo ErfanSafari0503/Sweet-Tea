@@ -12,14 +12,14 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Suspense fallback={<LoadingScreen />}>
+        <Suspense fallback={<LoadingScreen />}>
+          <Routes>
             <Route index element={<Home />} />
             <Route path="sign-up" element={<SignUp />} />
             <Route path="sign-in" element={<SignIn />} />
             <Route path="dashboard" element={<Dashboard />} />
-          </Suspense>
-        </Routes>
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </>
   );

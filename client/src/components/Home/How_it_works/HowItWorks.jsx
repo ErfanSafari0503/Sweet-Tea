@@ -1,5 +1,5 @@
 import HowItWorksItem from "./HowItWorksItem";
-import Button from "../Reusable/Button";
+import Button from "../../Reusable/Button";
 
 export default function HowItWorks() {
   return (

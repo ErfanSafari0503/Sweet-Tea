@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ComentsSlide from "./ComentsSlide";
-import Button from "../Reusable/Button";
-import commentsData from "../../jsons/comments.json";
+import Button from "../../Reusable/Button";
+import commentsData from "../../../jsons/comments.json";
 
 export default function Comments() {
   const [slideId, setSlideId] = useState(1);

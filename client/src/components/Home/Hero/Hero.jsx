@@ -1,4 +1,4 @@
-import Button from "../Reusable/Button";
+import Button from "../../Reusable/Button";
 
 export default function Hero() {
   return (
@@ -49,14 +49,14 @@ export default function Hero() {
           </div>
           <div className="hidden xl:block mr-auto bg">
             <Button styles="bg-blue-700 px-5 py-2 rounded-lg text-zinc-50">
-            سفارش بده!
+              سفارش بده!
             </Button>
           </div>
         </div>
       </div>
       <div className="w-full xl:hidden">
         <Button styles="w-full bg-blue-700 p-4 rounded-lg text-zinc-50 text-2xl">
-        ثبت‌نام
+          ثبت‌نام
         </Button>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import Button from "../Reusable/Button";
+import Button from "../../Reusable/Button";
 
 export default function Footer() {
   return (

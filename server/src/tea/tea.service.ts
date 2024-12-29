@@ -14,7 +14,7 @@ export class TeaService {
       data: {
         type,
         receiver_user_id,
-        sender_user_id,
+        sender_user_id: type.toLowerCase() === 'donate' ? sender_user_id : null,
         title,
         nickname,
         message,

@@ -1,17 +1,22 @@
+import { $Enums } from '@prisma/client';
 import { IsNotEmpty, IsOptional, IsString, IsNumber, IsEnum, IsDateString } from 'class-validator';
 
 export class CreateTeaDto {
+    @IsNotEmpty()
+    @IsNotEmpty()
+    product_id: number;
+
     @IsEnum(['donate', 'gift'])
     @IsOptional()
-    type?: string;
+    type?: $Enums.gifts_type;
   
     @IsNotEmpty()
     @IsNumber()
     receiver_user_id: number;
   
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumber()
-    sender_user_id: number;
+    sender_user_id?: number;
   
     @IsString()
     @IsOptional()
@@ -31,7 +36,7 @@ export class CreateTeaDto {
   
     @IsEnum(['active', 'received', 'cancelled'])
     @IsOptional()
-    status?: string;
+    status?: $Enums.gifts_status;
   
     @IsDateString()
     @IsOptional()
@@ -44,4 +49,8 @@ export class CreateTeaDto {
     @IsDateString()
     @IsOptional()
     scheduled_end_at?: Date;
+
+    @IsNotEmpty()
+    @IsString()
+    count: number;
   }

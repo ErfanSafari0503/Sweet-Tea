@@ -7,24 +7,43 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class TeaService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createTeaDto: CreateTeaDto) {
-    const { type, receiver_user_id, sender_user_id, title, nickname, message, total_price, status, received_at, scheduled_start_at, scheduled_end_at } = createTeaDto;
-
-  return this.prisma.gifts.create({
-    data: {
-      type: 'gift',
-      receiver_user_id,
-      sender_user_id,
-      title,
-      nickname,
-      message,
-      total_price,
-      status: 'active',
-      received_at,
-      scheduled_start_at,
-      scheduled_end_at,
-    },
-  });
+  async create(createTeaDto: CreateTeaDto) {
+    const { product_id, type, receiver_user_id, sender_user_id, title, nickname, message, total_price, status, received_at, scheduled_start_at, scheduled_end_at, count } = createTeaDto;
+    
+    const gift = await this.prisma.gifts.create({
+      data: {
+        type,
+        receiver_user_id,
+        sender_user_id: type.toLowerCase() === 'donate' ? sender_user_id : null,
+        title,
+        nickname,
+        message,
+        total_price,
+        status,
+        received_at,
+        scheduled_start_at,
+        scheduled_end_at,
+      },
+    });
+    
+        var gift_products = []
+    
+        for (let index = 0; index < count; index++) {
+          gift_products[index] = this.prisma.gift_products.create({
+            data: {
+              gift_id: gift.id,
+              product_id: product_id,
+            },
+            select: {
+              id: true,
+            },
+          });
+          
+        }
+        return {
+          "gift_products" : gift_products,
+          "gift": gift
+        }
   }
 
 

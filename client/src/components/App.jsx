@@ -6,7 +6,7 @@ import LoadingScreen from "../pages/LoadingScreen";
 const Home = lazy(() => import("../pages/Home"));
 const SignUp = lazy(() => import("../pages/SignUp"));
 const SignIn = lazy(() => import("../pages/SignIn"));
-const Dashboard = lazy(() => import("../pages/Dashboard"));
+const Dashboard = lazy(() => import("../pages/DashboardPage"));
 const Donate = lazy(() => import("../pages/Donate"));
 const Notification = lazy(() => import("../pages/NotificationPage"));
 

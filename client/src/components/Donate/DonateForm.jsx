@@ -1,7 +1,8 @@
 import { useReducer } from "react";
+import { Link } from "react-router-dom";
+import LoadingScreen from "../Global/Loading";
 import Input from "../Reusable/Input";
 import Button from "../Reusable/Button";
-import LoadingScreen from "../Global/Loading";
 
 const initialState = {
   profilePicture: "./src/images/Avatar2.svg",
@@ -123,7 +124,7 @@ export default function DonateForm() {
           <header>
             <ul className="flex w-full flex-row text-base items-center justify-center">
               <li className="order-first px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200">
-                <a to="/">چایی نبات</a>
+                <Link to="/">چایی نبات</Link>
               </li>
             </ul>
           </header>

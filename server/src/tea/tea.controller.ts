@@ -13,19 +13,15 @@ export class TeaController {
   }
 
   
-    @Get()
-    async getAllTeas(
-      @Query('receiver_user_id') receiver_user_id?: number,
-      @Query('sender_user_id') sender_user_id?: number,
-      @Query('status') status?: string,
-    ): Promise<any> {
-      return this.teaService.findAll({ receiver_user_id, sender_user_id });
-    }
-  
-    @Get(':id')
-    async getTeaById(@Param('id') id: number): Promise<any> {
-      return this.teaService.findById(id);
-    }
+  @Get()
+  async getAllGifts(@Query('receiver_user_id') receiverUserId: number) {
+    return this.teaService.getAllTeas(receiverUserId);
+  }
+
+  @Get(':id')
+  async getGiftById(@Param('id') id: number) {
+    return this.teaService.getTeaById(id);
+  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTeaDto: UpdateTeaDto) {

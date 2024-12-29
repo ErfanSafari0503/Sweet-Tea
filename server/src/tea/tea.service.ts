@@ -28,34 +28,87 @@ export class TeaService {
   }
 
 
-  async findAll(filters: {
-    receiver_user_id?: number;
-    sender_user_id?: number;
-  }): Promise<any> {
-    const { receiver_user_id, sender_user_id } = filters;
-
-    return this.prisma.gifts.findMany({
-      where: {
-        receiver_user_id,
-        sender_user_id,
-      },
+  async getAllTeas(receiverUserId: number): Promise<any> {
+    // Fetch related data using Prisma
+    const gifts = await this.prisma.gifts.findMany({
+      where: { receiver_user_id: receiverUserId },
       include: {
+        gift_products: {
+          include: {
+            products: {
+              include: {
+                buffets: true,
+              },
+            },
+          },
+        },
         users_gifts_sender_user_idTousers: true,
-        users_gifts_receiver_user_idTousers: true,
-        gift_products: true,
       },
     });
+
+    // Transform data to match SQL query structure
+    const aggregatedGifts = gifts.map((gift) => {
+      const sender = `${gift.users_gifts_sender_user_idTousers.first_name} ${gift.users_gifts_sender_user_idTousers.last_name}`;
+      const products = gift.gift_products.map((gp) => ({
+        product: gp.products.name,
+        size: gp.products.size,
+        buffet: gp.products.buffets.name,
+      }));
+
+      return products.map((product) => ({
+        product: product.product,
+        size: product.size,
+        buffet: product.buffet,
+        message: gift.message,
+        nickname: gift.nickname,
+        title: gift.title,
+        sender,
+        productCount: gift.gift_products.length, // Count products for each gift
+      }));
+    });
+
+    // Flatten the array of arrays
+    return aggregatedGifts.flat();
   }
 
-  async findById(id: number): Promise<any> {
-    return this.prisma.gifts.findUnique({
+  async getTeaById(id: number): Promise<any> {
+    const gift = await this.prisma.gifts.findUnique({
       where: { id },
       include: {
-        users_gifts_sender_user_idTousers: true,
-        users_gifts_receiver_user_idTousers: true,
-        gift_products: true,
+        gift_products: {
+          include: {
+            products: {
+              include: {
+                buffets: true,
+              },
+            },
+          },
+        },
+        users_gifts_sender_user_idTousers: true, // Include sender user details
       },
     });
+
+    if (!gift) {
+      throw new Error('Gift not found');
+    }
+
+    const sender = `${gift.users_gifts_sender_user_idTousers.first_name} ${gift.users_gifts_sender_user_idTousers.last_name}`;
+    const products = gift.gift_products.map((gp) => ({
+      product: gp.products.name,
+      size: gp.products.size,
+      buffet: gp.products.buffets.name,
+    }));
+
+    return products.map((product) => ({
+      product: product.product,
+      size: product.size,
+      buffet: product.buffet,
+      message: gift.message,
+      nickname: gift.nickname,
+      title: gift.title,
+      sender,
+      productCount: gift.gift_products.length, // Count products for each gift
+    }));
   }
 
   update(id: number, updateTeaDto: UpdateTeaDto) {

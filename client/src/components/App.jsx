@@ -9,6 +9,9 @@ const SignIn = lazy(() => import("../pages/SignIn"));
 const Dashboard = lazy(() => import("../pages/DashboardPage"));
 const Donate = lazy(() => import("../pages/Donate"));
 const Notification = lazy(() => import("../pages/NotificationPage"));
+const AboutUs = lazy(() => import("../pages/AboutUs"));
+const ContactUs = lazy(() => import("../pages/ContactUs"));
+const ErrorPage = lazy(() => import("../pages/ErrorPage"));
 
 export default function App() {
   return (
@@ -23,6 +26,9 @@ export default function App() {
             <Route path="donate" element={<Donate />} />
             <Route path="loading" element={<LoadingScreen />} />
             <Route path="notification" element={<Notification />} />
+            <Route path="about-us" element={<AboutUs />} />
+            <Route path="contact-us" element={<ContactUs />} />
+            <Route path="error-page" element={<ErrorPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

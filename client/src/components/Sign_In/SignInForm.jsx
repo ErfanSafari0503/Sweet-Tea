@@ -111,12 +111,9 @@ export default function SignInForm() {
 
     try {
       await axios
-        .post("https://localhost:8384/api/sign-in", {
-          status: "success",
-          data: {
-            phoneNumber: state.phoneNumber,
-            password: state.password,
-          },
+        .post("http://localhost:3002/v1/auth/login", {
+          phone_number: state.phoneNumber,
+          password: state.password,
         })
         .then((response) => {
           if (response.status === 200 || response.status === 201) {

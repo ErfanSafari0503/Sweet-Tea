@@ -1,6 +1,43 @@
+import { useEffect, useReducer } from "react";
+import { Link } from "react-router-dom";
 import SideMenu from "./SideMenu";
 
+const initialState = {
+  firstName: "",
+  walletAmount: 0,
+  teaAmount: 0,
+  selectedTea: 0,
+  visits: 0,
+  recivedDonations: 0,
+  sendedDonations: 0,
+  isLoading: false,
+  error: {},
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "userData/loaded":
+      return {
+        ...state,
+        firstName: action.payload.firstName,
+        walletAmount: action.payload.walletAmount,
+        teaAmount: action.payload.teaAmount,
+        visits: action.payload.visits,
+        recivedDonations: action.payload.recivedDonations,
+        sendedDonations: action.payload.sendedDonations,
+      };
+    case "submit/started":
+      return { ...state, isLoading: true };
+    default:
+      return state;
+  }
+}
+
 export default function Dashboard() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(function () {}, []);
+
   return (
     <div className="font-primary w-full bg-amber-50">
       <SideMenu />
@@ -12,7 +49,7 @@ export default function Dashboard() {
               <img src="src/images/Menu.svg" className="size-12" alt="" />
             </li>
             <li className="order-first px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200">
-              <a to="/">چایی نبات</a>
+              <Link to="/">چایی نبات</Link>
             </li>
           </ul>
         </header>
@@ -21,8 +58,8 @@ export default function Dashboard() {
             <div className="flex flex-col gap-2">
               <h2 className="text-2xl font-bold">پنل کاربری</h2>
               <p className="text-lg">
-                سلام <span className="text-slate-500">firstname</span> عزیز،
-                میدونی که همیشه یه چایی کمرباریک برات کنار گذاشتیم؟
+                سلام <span className="text-slate-500">{state.firstName}</span>{" "}
+                عزیز، میدونی که همیشه یه چایی کمرباریک برات کنار گذاشتیم؟
               </p>
             </div>
             <div className="w-full bg-[#dcc3bf] flex py-4 px-4 relative rounded-2xl">
@@ -36,7 +73,7 @@ export default function Dashboard() {
               <div className="order-2 flex grow">
                 <div className="flex flex-col gap-2">
                   <h2 className="text-xl font-bold">کیف پول</h2>
-                  <h3 className="text-2xl">24,000 تومان</h3>
+                  <h3 className="text-2xl">{state.walletAmount},000 تومان</h3>
                 </div>
                 <div className="px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200 text-center mr-auto self-end">
                   <span>شارژش کن</span>
@@ -55,12 +92,17 @@ export default function Dashboard() {
               <div className="w-full flex flex-col items-center gap-6 px-10">
                 <h2 className="text-2xl">
                   <span>
-                    <span className="text-[#86422c]">12</span> تا{" "}
+                    <span className="text-[#86422c]">{state.teaAmount}</span> تا{" "}
                   </span>
                   چایی نبات تو جیبته !
                 </h2>
                 <div className="w-full relative">
-                  <input type="range" class="custom-range" min="0" max="100" />
+                  <input
+                    type="range"
+                    className="custom-range"
+                    min="0"
+                    max="100"
+                  />
                 </div>
                 <div className="w-full flex justify-between">
                   <div className="px-6 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200 text-center">
@@ -68,7 +110,7 @@ export default function Dashboard() {
                   </div>
                   <div className="px-6 py-2 text-white bg-[#86422c] rounded-2xl xl:bg-slate-200 flex justify-center items-center">
                     <span>
-                      <span>6</span> عدد
+                      <span>{state.selectedTea}</span> عدد
                     </span>
                   </div>
                 </div>
@@ -82,7 +124,7 @@ export default function Dashboard() {
                 </div>
                 <div className="flex flex-col mx-4">
                   <span className="text-md">تعداد بازدید</span>
-                  <span className="text-xl font-bold">4</span>
+                  <span className="text-xl font-bold">{state.visits}</span>
                 </div>
                 <div className="mr-auto">
                   <img src="src/images/chart.svg" className="w-36" alt="" />
@@ -94,7 +136,9 @@ export default function Dashboard() {
                 </div>
                 <div className="flex flex-col mx-4">
                   <span className="text-md">تعداد چایی دریافتی</span>
-                  <span className="text-xl font-bold">16</span>
+                  <span className="text-xl font-bold">
+                    {state.recivedDonations}
+                  </span>
                 </div>
                 <div className="mr-auto">
                   <img src="src/images/chart.svg" className="w-36" alt="" />
@@ -110,7 +154,9 @@ export default function Dashboard() {
                 </div>
                 <div className="flex flex-col mx-4">
                   <span className="text-md">تعداد چایی ارسالی</span>
-                  <span className="text-xl font-bold">8</span>
+                  <span className="text-xl font-bold">
+                    {state.sendedDonations}
+                  </span>
                 </div>
                 <div className="mr-auto">
                   <img src="src/images/chart.svg" className="w-36" alt="" />

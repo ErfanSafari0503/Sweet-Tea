@@ -200,16 +200,12 @@ export default function SignUpForm() {
 
     try {
       await axios
-        .post("https://localhost:8384/api/sign-up", {
-          status: "success",
-          data: {
-            firstName: state.firstName,
-            lastName: state.lastName,
-            username: state.username,
-            gender: state.gender,
-            phoneNumber: state.phoneNumber,
-            password: state.password,
-          },
+        .post("http://localhost:3002/v1/auth/register", {
+          first_name: state.firstName,
+          last_name: state.lastName,
+          phone_number: state.phoneNumber,
+          username: state.username,
+          password: state.password,
         })
         .then((response) => {
           if (response.status === 200 || response.status === 201) {
@@ -220,7 +216,7 @@ export default function SignUpForm() {
               type: "NEW_ERROR",
               payload: {
                 field: "server",
-                value: "Unexpected response from the server.",
+                value: `respons code ${response.status}`,
               },
             });
           }

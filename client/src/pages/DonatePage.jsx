@@ -1,5 +1,5 @@
 import DonateForm from "../components/Donate/DonateForm";
 
-export default function Donate() {
+export default function DonatePage() {
   return <DonateForm />;
 }

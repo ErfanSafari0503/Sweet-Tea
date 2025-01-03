@@ -8,7 +8,7 @@ import FrequentlyAskedQuestion from "./Frequently_Asked_Question/FrequentlyAsked
 import Comments from "./Comments/Comments";
 import Footer from "./Footer/Footer";
 
-export default function HomePage() {
+export default function Home() {
   const [menuToggled, setMenuToggled] = useState(false);
 
   function handleMenuToggled() {

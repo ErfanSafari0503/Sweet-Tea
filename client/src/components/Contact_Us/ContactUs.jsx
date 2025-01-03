@@ -1,20 +1,22 @@
+import { Link } from "react-router-dom";
+
 export default function ContactUs() {
   return (
     <div className="font-primary w-full bg-amber-50">
       <header className="px-10 py-4 bg-white shadow-md sticky top-0 z-50">
         <ul className="flex justify-between items-center w-full">
-          <li class="order-last px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200">
-            <a to="/">چایی نبات</a>
+          <li className="order-last px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200">
+            <Link to="/">چایی نبات</Link>
           </li>
           <li>
-            <img src="src/images/Menu.svg" class="size-12" alt="" />
+            <img src="src/images/Menu.svg" className="size-12" alt="" />
           </li>
         </ul>
       </header>
       <main className="px-10 py-8 leading-8">
         <div className="bg-white px-8 py-8 rounded-3xl">
           <div className="flex justify-center flex-col gap-4 items-center py-4 relative">
-            <h2 class="absolute top-0 text-5xl z-0 font-bold text-gray-200 opacity-30 text-center translate-y-[-20%]">
+            <h2 className="absolute top-0 text-5xl z-0 font-bold text-gray-200 opacity-30 text-center translate-y-[-20%]">
               contact us
             </h2>
             <h1 className="relative text-xl font-bold text-primary">

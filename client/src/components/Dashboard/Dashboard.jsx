@@ -10,6 +10,7 @@ const initialState = {
   visits: 0,
   recivedDonations: 0,
   sendedDonations: 0,
+  isOpen: false,
   isLoading: false,
   error: {},
 };
@@ -26,6 +27,8 @@ function reducer(state, action) {
         recivedDonations: action.payload.recivedDonations,
         sendedDonations: action.payload.sendedDonations,
       };
+    case "menu/toggled":
+      return { state, isOpen: !state.isOpen };
     case "submit/started":
       return { ...state, isLoading: true };
     default:
@@ -38,15 +41,29 @@ export default function Dashboard() {
 
   useEffect(function () {}, []);
 
+  function handleChange(e) {
+    const { id } = e.target;
+
+    if (id === "toggleMenu") {
+      dispatch({ type: "menu/toggled" });
+    }
+  }
+
   return (
     <div className="font-primary w-full bg-amber-50">
-      <SideMenu />
+      <SideMenu isOpen={state.isOpen} />
       <div className="px-10 py-4">
         <header>
           <ul className="flex w-full flex-row text-base justify-between items-center">
             <li className="order-last flex gap-8  xl:hidden">
               <img src="src/images/light.svg" className="size-12" alt="" />
-              <img src="src/images/Menu.svg" className="size-12" alt="" />
+              <img
+                src="src/images/Menu.svg"
+                id="toggleMenu"
+                className="size-12"
+                alt=""
+                onClick={handleChange}
+              />
             </li>
             <li className="order-first px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200">
               <Link to="/">چایی نبات</Link>

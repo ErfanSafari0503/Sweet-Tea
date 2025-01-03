@@ -1,11 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateTeaDto } from './dto/create-tea.dto';
 import { UpdateTeaDto } from './dto/update-tea.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { REQUEST } from '@nestjs/core';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class TeaService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+          @Inject(REQUEST) private readonly request: Request,
+          private readonly prisma: PrismaService,
+          private jwtService: JwtService,) {}
 
   async create(createTeaDto: CreateTeaDto) {
     const { product_id, type, receiver_user_id, sender_user_id, title, nickname, message, total_price, status, received_at, scheduled_start_at, scheduled_end_at, count } = createTeaDto;
@@ -50,8 +55,10 @@ export class TeaService {
   async getAllTeas(receiverUserId: number): Promise<any> {
     // Fetch related data using Prisma
     const gifts = await this.prisma.gifts.findMany({
-      where: { receiver_user_id: receiverUserId },
+      where: { receiver_user_id: this.request['user'].id },
       include: {
+        users_gifts_receiver_user_idTousers: true,
+        users_gifts_sender_user_idTousers: true,
         gift_products: {
           include: {
             products: {
@@ -61,11 +68,18 @@ export class TeaService {
             },
           },
         },
-        users_gifts_sender_user_idTousers: true,
       },
     });
 
-    const aggregatedGifts = gifts.map((gift) => {
+    
+    const aggregatedGifts = gifts.map(async (gift) => {
+      const reciverUser = gift.users_gifts_receiver_user_idTousers
+      
+      const wallet = await this.prisma.wallets.findFirst({
+        where: {user_id: reciverUser.id},
+        select: {balance: true}
+      })
+
       const sender = `${gift.users_gifts_sender_user_idTousers.first_name} ${gift.users_gifts_sender_user_idTousers.last_name}`;
       const products = gift.gift_products.map((gp) => ({
         product: gp.products.name,
@@ -81,6 +95,8 @@ export class TeaService {
         nickname: gift.nickname,
         title: gift.title,
         sender,
+        firstName: reciverUser.first_name,
+        walletAmount: wallet.balance,
         productCount: gift.gift_products.length, // Count products for each gift
       }));
     });
@@ -89,8 +105,8 @@ export class TeaService {
   }
 
   async getTeaById(id: number): Promise<any> {
-    const gift = await this.prisma.gifts.findUnique({
-      where: { id },
+    const gift = await this.prisma.gifts.findFirst({
+      where: { receiver_user_id: this.request['user'].id },
       include: {
         users_gifts_receiver_user_idTousers: true,
         users_gifts_sender_user_idTousers: true,

@@ -71,15 +71,9 @@ export class TeaService {
       },
     });
 
-    
+    let giftCount = 0
     const aggregatedGifts = gifts.map(async (gift) => {
-      const reciverUser = gift.users_gifts_receiver_user_idTousers
-      
-      const wallet = await this.prisma.wallets.findFirst({
-        where: {user_id: reciverUser.id},
-        select: {balance: true}
-      })
-
+      giftCount += gift.gift_products.length
       const sender = `${gift.users_gifts_sender_user_idTousers.first_name} ${gift.users_gifts_sender_user_idTousers.last_name}`;
       const products = gift.gift_products.map((gp) => ({
         product: gp.products.name,
@@ -95,13 +89,23 @@ export class TeaService {
         nickname: gift.nickname,
         title: gift.title,
         sender,
-        firstName: reciverUser.first_name,
-        walletAmount: wallet.balance,
         productCount: gift.gift_products.length, // Count products for each gift
       }));
     });
 
-    return aggregatedGifts.flat();
+    const reciverUser = await this.prisma.users.findUnique({where: {id: this.request['user'].id}})
+      
+    const wallet = await this.prisma.wallets.findFirst({
+      where: {user_id: reciverUser.id},
+      select: {balance: true}
+    })
+
+
+    return {"gifts": aggregatedGifts.flat(),
+      "walletAmount": wallet.balance, 
+      "firstName": reciverUser.first_name,
+      "giftCount": giftCount,
+    };
   }
 
   async getTeaById(id: number): Promise<any> {

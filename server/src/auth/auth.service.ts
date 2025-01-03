@@ -101,6 +101,7 @@ export class AuthService {
         const user = await this.prisma.users.findFirst({ where: { id: this.request['user'].id } });
 
         return {
+            id: user.id,
             first_name: user.first_name,
             last_name: user.last_name,
             gender: user.gender,

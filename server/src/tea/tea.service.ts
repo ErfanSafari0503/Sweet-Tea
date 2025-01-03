@@ -65,7 +65,6 @@ export class TeaService {
       },
     });
 
-    // Transform data to match SQL query structure
     const aggregatedGifts = gifts.map((gift) => {
       const sender = `${gift.users_gifts_sender_user_idTousers.first_name} ${gift.users_gifts_sender_user_idTousers.last_name}`;
       const products = gift.gift_products.map((gp) => ({
@@ -86,7 +85,6 @@ export class TeaService {
       }));
     });
 
-    // Flatten the array of arrays
     return aggregatedGifts.flat();
   }
 
@@ -94,6 +92,8 @@ export class TeaService {
     const gift = await this.prisma.gifts.findUnique({
       where: { id },
       include: {
+        users_gifts_receiver_user_idTousers: true,
+        users_gifts_sender_user_idTousers: true,
         gift_products: {
           include: {
             products: {
@@ -103,9 +103,15 @@ export class TeaService {
             },
           },
         },
-        users_gifts_sender_user_idTousers: true, // Include sender user details
       },
     });
+
+    const reciverUser = gift.users_gifts_receiver_user_idTousers
+
+    const wallet = await this.prisma.wallets.findFirst({
+      where: {user_id: reciverUser.id},
+      select: {balance: true}
+    })
 
     if (!gift) {
       throw new Error('Gift not found');
@@ -126,7 +132,9 @@ export class TeaService {
       nickname: gift.nickname,
       title: gift.title,
       sender,
-      productCount: gift.gift_products.length, // Count products for each gift
+      firstName: reciverUser.first_name,
+      wallentAmount: wallet.balance,
+      productCount: gift.gift_products.length,
     }));
   }
 

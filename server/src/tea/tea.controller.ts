@@ -15,8 +15,8 @@ export class TeaController {
 
   @UseGuards(AuthGuard)
   @Get()
-  async getAllGifts(@Query('receiver_user_id') receiverUserId: number) {
-      return this.teaService.getAllTeas(receiverUserId);
+  async getAllGifts() {
+      return this.teaService.getAllTeas();
     }
     
   // @Get()

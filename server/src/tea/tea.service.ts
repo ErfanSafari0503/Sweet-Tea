@@ -8,13 +8,28 @@ import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class TeaService {
   constructor(
-          @Inject(REQUEST) private readonly request: Request,
-          private readonly prisma: PrismaService,
-          private jwtService: JwtService,) {}
+    @Inject(REQUEST) private readonly request: Request,
+    private readonly prisma: PrismaService,
+    private jwtService: JwtService,
+  ) {}
 
   async create(createTeaDto: CreateTeaDto) {
-    const { product_id, type, receiver_user_id, sender_user_id, title, nickname, message, total_price, status, received_at, scheduled_start_at, scheduled_end_at, count } = createTeaDto;
-    
+    const {
+      product_id,
+      type,
+      receiver_user_id,
+      sender_user_id,
+      title,
+      nickname,
+      message,
+      total_price,
+      status,
+      received_at,
+      scheduled_start_at,
+      scheduled_end_at,
+      count,
+    } = createTeaDto;
+
     const gift = await this.prisma.gifts.create({
       data: {
         type,
@@ -30,30 +45,27 @@ export class TeaService {
         scheduled_end_at,
       },
     });
-    
-        var gift_products = []
-    
-        for (let index = 0; index < count; index++) {
-          gift_products[index] = this.prisma.gift_products.create({
-            data: {
-              gift_id: gift.id,
-              product_id: product_id,
-            },
-            select: {
-              id: true,
-            },
-          });
-          
-        }
-        return {
-          "gift_products" : gift_products,
-          "gift": gift
-        }
+
+    var gift_products = [];
+
+    for (let index = 0; index < count; index++) {
+      gift_products[index] = this.prisma.gift_products.create({
+        data: {
+          gift_id: gift.id,
+          product_id: product_id,
+        },
+        select: {
+          id: true,
+        },
+      });
+    }
+    return {
+      gift_products: gift_products,
+      gift: gift,
+    };
   }
 
-
-  async getAllTeas(receiverUserId: number): Promise<any> {
-    // Fetch related data using Prisma
+  async getAllTeas(): Promise<any> {
     const gifts = await this.prisma.gifts.findMany({
       where: { receiver_user_id: this.request['user'].id },
       include: {
@@ -71,9 +83,9 @@ export class TeaService {
       },
     });
 
-    let giftCount = 0
+    let giftCount = 0;
     const aggregatedGifts = gifts.map(async (gift) => {
-      giftCount += gift.gift_products.length
+      giftCount += gift.gift_products.length;
       const sender = `${gift.users_gifts_sender_user_idTousers.first_name} ${gift.users_gifts_sender_user_idTousers.last_name}`;
       const products = gift.gift_products.map((gp) => ({
         product: gp.products.name,
@@ -81,7 +93,7 @@ export class TeaService {
         buffet: gp.products.buffets.name,
       }));
 
-      return products.map((product) => ({
+      products.map((product) => ({
         product: product.product,
         size: product.size,
         buffet: product.buffet,
@@ -93,18 +105,20 @@ export class TeaService {
       }));
     });
 
-    const reciverUser = await this.prisma.users.findUnique({where: {id: this.request['user'].id}})
-      
+    const reciverUser = await this.prisma.users.findUnique({
+      where: { id: this.request['user'].id },
+    });
+
     const wallet = await this.prisma.wallets.findFirst({
-      where: {user_id: reciverUser.id},
-      select: {balance: true}
-    })
+      where: { user_id: reciverUser.id },
+      select: { balance: true },
+    });
 
-
-    return {"gifts": aggregatedGifts.flat(),
-      "walletAmount": wallet.balance, 
-      "firstName": reciverUser.first_name,
-      "giftCount": giftCount,
+    return {
+      gifts: aggregatedGifts.flat(),
+      walletAmount: wallet.balance,
+      firstName: reciverUser.first_name,
+      giftCount: giftCount,
     };
   }
 
@@ -126,12 +140,12 @@ export class TeaService {
       },
     });
 
-    const reciverUser = gift.users_gifts_receiver_user_idTousers
+    const reciverUser = gift.users_gifts_receiver_user_idTousers;
 
     const wallet = await this.prisma.wallets.findFirst({
-      where: {user_id: reciverUser.id},
-      select: {balance: true}
-    })
+      where: { user_id: reciverUser.id },
+      select: { balance: true },
+    });
 
     if (!gift) {
       throw new Error('Gift not found');

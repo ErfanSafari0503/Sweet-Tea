@@ -6,6 +6,7 @@ import { REQUEST } from '@nestjs/core';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import * as bcrypt from "bcrypt";
 import { RegisterAuthDto } from './dto/register-auth.dto';
+import {CreateWalletDto} from './dto/wallet-create.dto'
 import { UsernameExistsAuthDto } from './dto/username-exists-auth.dto';
 
 @Injectable()
@@ -53,7 +54,7 @@ export class AuthService {
 
         const hash = await bcrypt.hash(registerAuthDto.password, salt);
 
-        await this.prisma.users.create({
+        const createdUser = await this.prisma.users.create({
             data: {
                 // role_id: registerAuthDto.role_id,
                 // university_id: registerAuthDto.university_id,
@@ -66,6 +67,8 @@ export class AuthService {
                 password: hash,
             }
         });
+
+        await this.prisma.wallets.create({data:{user_id: createdUser.id}})
 
         return;
     }

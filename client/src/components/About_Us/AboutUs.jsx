@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function AboutUs() {
   return (
-    <div className="font-primary w-full bg-amber-50">
+    <div className="font-primary w-full bg-secondary">
       <header className="px-10 py-4 bg-white shadow-md sticky top-0 z-50">
         <ul className="flex justify-between items-center w-full">
-          <li className="order-last px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200">
+          <li className="order-last px-4 py-2 bg-secondary rounded-lg xl:bg-slate-200">
             <Link to="/">چایی نبات</Link>
           </li>
           <li>

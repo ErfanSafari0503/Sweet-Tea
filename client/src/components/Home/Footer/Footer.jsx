@@ -3,12 +3,12 @@ import Button from "../../Reusable/Button";
 
 export default function Footer() {
   return (
-    <footer className="w-full py-4 px-8 bg-blue-50 relative">
-      <Button styles="absolute p-4 bg-blue-600 rounded-full left-6 -top-10">
+    <footer className="w-full font-primary py-4 px-8 bg-[#FDF0E84D] relative">
+      <Button styles="absolute p-4 bg-primary rounded-full left-6 -top-10">
         <img className="size-10" src="src/images/Up.svg" alt="" />
       </Button>
       <article className="flex flex-col w-full gap-10 my-4 pb-4 border-b-default border-slate-400">
-        <div className="px-4 py-2 bg-blue-200 rounded-lg xl:bg-slate-200 max-w-fit">
+        <div className="px-4 py-2 bg-secondary font-bold rounded-lg  max-w-fit">
           چایی نبات
         </div>
         <div className="">
@@ -70,10 +70,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex justify-between">
-          <div className="px-24 py-12 bg-slate-200 rounded-lg text-xs">
+          <div className="px-24 py-12 bg-[#FDF0E8] rounded-lg text-xs">
             مجوز
           </div>
-          <div className="px-24 py-12 bg-slate-200 rounded-lg text-xs">
+          <div className="px-24 py-12 bg-[#FDF0E8] rounded-lg text-xs">
             مجوز
           </div>
         </div>

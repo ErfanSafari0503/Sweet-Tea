@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function ContactUs() {
   return (
-    <div className="font-primary w-full bg-amber-50">
+    <div className="font-primary w-full bg-secondary">
       <header className="px-10 py-4 bg-white shadow-md sticky top-0 z-50">
         <ul className="flex justify-between items-center w-full">
-          <li className="order-last px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200">
+          <li className="order-last px-4 py-2 bg-secondary rounded-lg xl:bg-slate-200">
             <Link to="/">چایی نبات</Link>
           </li>
           <li>
@@ -31,14 +31,14 @@ export default function ContactUs() {
               <h2 className="text-lg font-bold">راه‌های ارتباطی</h2>
               <div className="flex flex-col gap-4">
                 <div className="flex justify-between gap-4">
-                  <div className="flex flex-col gap-2 items-center justify-center bg-amber-50 px-4 py-6 w-1/2 rounded-2xl">
+                  <div className="flex flex-col gap-2 items-center justify-center bg-secondary px-4 py-6 w-1/2 rounded-2xl">
                     <img className="w-10" src="src/images/phone.svg" alt="" />
                     <h2 className="text-base font-bold">تلفن تماس</h2>
                     <p dir="ltr" className="text-base">
                       +98 912 345 6789
                     </p>
                   </div>
-                  <div className="flex flex-col gap-2 items-center justify-center bg-amber-50 px-4 py-6 w-1/2 rounded-2xl">
+                  <div className="flex flex-col gap-2 items-center justify-center bg-secondary px-4 py-6 w-1/2 rounded-2xl">
                     <img className="w-10" src="src/images/email.svg" alt="" />
                     <h2 className="text-base font-bold">ایمیل</h2>
                     <p dir="ltr" className="text-base">
@@ -47,7 +47,7 @@ export default function ContactUs() {
                   </div>
                 </div>
                 <div className="flex">
-                  <div className="flex flex-col gap-2 items-center justify-center bg-amber-50 px-4 py-6 grow rounded-2xl">
+                  <div className="flex flex-col gap-2 items-center justify-center bg-secondary px-4 py-6 grow rounded-2xl">
                     <img
                       className="w-10"
                       src="src/images/location.svg"

@@ -19,7 +19,7 @@ export default function FrequentlyAskedQuestionItem({
   }
 
   return (
-    <div className="w-full flex flex-col gap-4 px-4 py-6 rounded-lg bg-slate-200">
+    <div className="w-full flex flex-col gap-4 px-4 py-6 rounded-xl bg-white shadow-md">
       <div className="flex justify-between gap-16">
         <p className="font-bold text-xl">{question}</p>
         <img

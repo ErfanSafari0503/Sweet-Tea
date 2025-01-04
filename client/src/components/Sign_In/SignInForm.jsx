@@ -146,10 +146,10 @@ export default function SignInForm() {
 
   return (
     <form
-      className="container max-w-96 h-screen m-auto	w-full px-5 py-4 text-xs flex flex-col flex-wrap"
+      className="container max-w-96 h-screen m-auto	w-full px-5 py-4 font-primary text-xs flex flex-col flex-wrap"
       onSubmit={handleSubmit}
     >
-      <h3 className="text-start text-2xl my-6">ورود</h3>
+      <h3 className="text-start text-2xl my-6 font-bold">ورود</h3>
       <p className="mb-5">خوش آمدید! لطفا اطلاعات خود را وارد کنید.</p>
       <div className="flex flex-col justify-around gap-2">
         <label htmlFor="Login-Number-Input">شماره موبایل</label>
@@ -174,20 +174,20 @@ export default function SignInForm() {
           value={state.password}
           onChange={handleChange}
         />
-        <Link to="/" className="text-sky-700 active:text-sky-950">
+        <Link to="/" className="text-primary">
           <span>فراموشی کلمه عبور</span>
         </Link>
       </div>
       <div className="flex flex-col grow justify-end gap-2">
         <Button
           type="submit"
-          styles="w-full bg-sky-600 p-2 rounded-lg text-zinc-50"
+          styles="w-full bg-primary p-2 rounded-xl text-zinc-50 text-base"
         >
           ورود
         </Button>
         <div className="flex justify-center gap-2">
           <span>حساب کاربری ندارید؟</span>
-          <Link to="/sign-up" className="text-sky-700 active:text-sky-950">
+          <Link to="/sign-up" className="text-primary">
             <span>ثبت‌ نام</span>
           </Link>
         </div>

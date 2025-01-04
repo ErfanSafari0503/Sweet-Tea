@@ -50,7 +50,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="font-primary w-full bg-amber-50">
+    <div className="font-primary w-full bg-secondary">
       <SideMenu isOpen={state.isOpen} />
       <div className="px-10 py-4">
         <header>
@@ -65,21 +65,26 @@ export default function Dashboard() {
                 onClick={handleChange}
               />
             </li>
-            <li className="order-first px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200">
+            <li className="order-first px-4 py-2 bg-primary rounded-lg text-white">
               <Link to="/">چایی نبات</Link>
             </li>
           </ul>
         </header>
         <main className="w-full bg-white rounded-2xl my-12 px-8 py-4 ">
           <article className="w-full py-2 flex flex-col gap-16">
-            <div className="flex flex-col gap-2">
-              <h2 className="text-2xl font-bold">پنل کاربری</h2>
-              <p className="text-lg">
+            <div className="flex justify-center flex-col gap-4 items-center py-4 relative">
+              <h2 class="absolute top-0 text-5xl z-0 font-bold text-gray-200 opacity-30 text-center translate-y-[-20%]">
+                Dashboard
+              </h2>
+              <h2 className="text-2xl font-bold text-center text-primary">
+                پنل کاربری
+              </h2>
+              <p className="text-lg text-center">
                 سلام <span className="text-slate-500">{state.firstName}</span>{" "}
                 عزیز، میدونی که همیشه یه چایی کمرباریک برات کنار گذاشتیم؟
               </p>
             </div>
-            <div className="w-full bg-[#dcc3bf] flex py-4 px-4 relative rounded-2xl">
+            <div className="w-full bg-tertiary  flex py-4 px-4 relative rounded-2xl">
               <div className="w-1/5 order-1">
                 <img
                   src="src/images/Wallet.svg"
@@ -92,13 +97,13 @@ export default function Dashboard() {
                   <h2 className="text-xl font-bold">کیف پول</h2>
                   <h3 className="text-2xl">{state.walletAmount},000 تومان</h3>
                 </div>
-                <div className="px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200 text-center mr-auto self-end">
+                <div className="px-4 py-2 bg-primary rounded-lg text-center mr-auto self-end text-white">
                   <span>شارژش کن</span>
                 </div>
               </div>
             </div>
             <h2 className="text-2xl font-bold">چای های شما</h2>
-            <div className="w-full bg-[#dcc3bf] flex flex-col py-4 px-4 rounded-2xl relative">
+            <div className="w-full bg-tertiary flex flex-col py-4 px-4 rounded-2xl relative">
               <div className="w-full mb-24">
                 <img
                   src="src/images/tea2.svg"
@@ -109,7 +114,7 @@ export default function Dashboard() {
               <div className="w-full flex flex-col items-center gap-6 px-10">
                 <h2 className="text-2xl">
                   <span>
-                    <span className="text-[#86422c]">{state.teaAmount}</span> تا{" "}
+                    <span className="text-primary">{state.teaAmount}</span> تا{" "}
                   </span>
                   چایی نبات تو جیبته !
                 </h2>
@@ -122,10 +127,10 @@ export default function Dashboard() {
                   />
                 </div>
                 <div className="w-full flex justify-between">
-                  <div className="px-6 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200 text-center">
+                  <div className="px-6 py-2 text-white bg-primary rounded-2xl xl:bg-slate-200 text-center">
                     <span className="text-2xl font-bold">دمش کن</span>
                   </div>
-                  <div className="px-6 py-2 text-white bg-[#86422c] rounded-2xl xl:bg-slate-200 flex justify-center items-center">
+                  <div className="px-6 py-2 font-bold bg-secondary rounded-2xl xl:bg-slate-200 flex justify-center items-center">
                     <span>
                       <span>{state.selectedTea}</span> عدد
                     </span>
@@ -135,7 +140,7 @@ export default function Dashboard() {
             </div>
             <div className="w-full flex flex-col py-4 gap-4">
               <h2 className="text-2xl font-bold mb-4">آمار ارقام</h2>
-              <div className="w-full bg-[#dcc3bf] rounded-2xl px-10 py-4 flex items-center">
+              <div className="w-full bg-tertiary rounded-2xl px-10 py-4 flex items-center">
                 <div>
                   <img src="src/images/eye.svg" className="size-12" alt="" />
                 </div>
@@ -147,7 +152,7 @@ export default function Dashboard() {
                   <img src="src/images/chart.svg" className="w-36" alt="" />
                 </div>
               </div>
-              <div className="w-full bg-[#dcc3bf] rounded-2xl px-10 py-4 flex items-center">
+              <div className="w-full bg-tertiary rounded-2xl px-10 py-4 flex items-center">
                 <div>
                   <img src="src/images/balon.svg" className="size-12" alt="" />
                 </div>
@@ -161,7 +166,7 @@ export default function Dashboard() {
                   <img src="src/images/chart.svg" className="w-36" alt="" />
                 </div>
               </div>
-              <div className="w-full bg-[#dcc3bf] rounded-2xl px-10 py-4 flex items-center">
+              <div className="w-full bg-tertiary rounded-2xl px-10 py-4 flex items-center">
                 <div>
                   <img
                     src="src/images/telegraph.svg"

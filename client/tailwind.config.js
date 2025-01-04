@@ -11,6 +11,8 @@ export default {
       },
       colors: {
         primary: "#E66A17",
+        secondary: "#FDF0E8",
+        tertiary: "#ECE9E9",
       },
       keyframes: {
         spin: {

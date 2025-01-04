@@ -21,7 +21,7 @@ export default function Comments() {
   }
 
   return (
-    <section className="flex w-full flex-col my-16 pt-8 bg-slate-200 rounded-lg pb-4 relative">
+    <section className="flex w-full flex-col pt-8 bg-secondary rounded-lg pb-4 relative">
       <div className="w-full text-center">
         <h1 className="font-bold text-3xl">نظرات مشتریان</h1>
       </div>

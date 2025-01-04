@@ -119,11 +119,11 @@ export default function DonateForm() {
     return <LoadingScreen />;
   } else {
     return (
-      <div className="font-primary w-full bg-amber-50">
+      <div className="font-primary w-full bg-secondary">
         <div className="px-10 py-4">
           <header>
             <ul className="flex w-full flex-row text-base items-center justify-center">
-              <li className="order-first px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200">
+              <li className="order-first px-4 py-2 bg-primary text-white rounded-lg xl:bg-slate-200">
                 <Link to="/">چایی نبات</Link>
               </li>
             </ul>

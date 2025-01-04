@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div className="w-full font-primary ">
       <SideMenu isOpen={menuToggled} />
-      <header className="w-full p-6 bg-blue-600 xl:bg-white xl:border-b-default xl:border-b-stone-200">
+      <header className="w-full p-6 bg-gradient-to-b from-[#FDF0E8] to-[#D16015] xl:bg-white xl:border-b-default xl:border-b-stone-200">
         <Navbar onMenuToggled={handleMenuToggled} />
         <figure className="xl:hidden">
           <img
@@ -28,7 +28,7 @@ export default function Home() {
           />
         </figure>
       </header>
-      <main className="w-full py-10 px-8 xl:py-20 xl:px-10 xl:gap-14">
+      <main className="w-full py-10  xl:py-20 xl:px-10 xl:gap-14">
         <Hero />
         <aside className="hidden xl:flex grow justify-center">
           <div>

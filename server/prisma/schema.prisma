@@ -171,11 +171,11 @@ model wallet_transactions {
 
 model wallets {
   id                  BigInt                @id @default(autoincrement()) @db.UnsignedBigInt
-  user_id             BigInt                @db.UnsignedBigInt
-  balance             BigInt                @default(0)
+  user_id             BigInt                @unique @db.UnsignedBigInt
+  balance             BigInt                @default(10)
   created_at          DateTime              @default(now()) @db.Timestamp(0)
   deactivated_at      DateTime?             @db.Timestamp(0)
-  updated_at          DateTime              @updatedAt @db.Timestamp(0)
+  updated_at          DateTime?              @updatedAt @db.Timestamp(0)
   wallet_transactions wallet_transactions[]
   users               users                 @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "wallets_user_id_foreign")
 

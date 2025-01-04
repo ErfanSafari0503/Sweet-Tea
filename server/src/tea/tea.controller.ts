@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
 import { TeaService } from './tea.service';
 import { CreateTeaDto } from './dto/create-tea.dto';
 import { UpdateTeaDto } from './dto/update-tea.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('tea')
 export class TeaController {
@@ -12,16 +13,16 @@ export class TeaController {
     return this.teaService.create(createTeaDto);
   }
 
-  
+  @UseGuards(AuthGuard)
   @Get()
-  async getAllGifts(@Query('receiver_user_id') receiverUserId: number) {
-    return this.teaService.getAllTeas(receiverUserId);
-  }
-
-  @Get(':id')
-  async getGiftById(@Param('id') id: number) {
-    return this.teaService.getTeaById(id);
-  }
+  async getAllGifts() {
+      return this.teaService.getAllTeas();
+    }
+    
+  // @Get()
+  // async getGiftById() {
+  //   return this.teaService.getTeaById(id);
+  // }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTeaDto: UpdateTeaDto) {

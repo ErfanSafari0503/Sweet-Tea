@@ -13,8 +13,8 @@ export class TeaService {
     private jwtService: JwtService,
   ) {}
 
-  async create(createTeaDto: CreateTeaDto) {
-    const {
+  async create(createTeaDto: CreateTeaDto, username: string = null) {
+    let {
       product_id,
       type,
       receiver_user_id,
@@ -29,11 +29,21 @@ export class TeaService {
       scheduled_end_at,
       count,
     } = createTeaDto;
+    if (username) {
+      const receiver_user = await this.prisma.users.findUnique({
+        where: {username: username}, 
+        select: {id: true}
+      })
+      if (receiver_user == null) {
+        receiver_user_id = receiver_user.id
+      }
+    }
+    createTeaDto.receiver_user_id;
 
     const gift = await this.prisma.gifts.create({
       data: {
         type,
-        receiver_user_id,
+        receiver_user_id: receiver_user_id,
         sender_user_id: type.toLowerCase() === 'donate' ? sender_user_id : null,
         title,
         nickname,

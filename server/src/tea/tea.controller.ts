@@ -9,8 +9,8 @@ export class TeaController {
   constructor(private readonly teaService: TeaService) {}
 
   @Post()
-  create(@Body() createTeaDto: CreateTeaDto) {
-    return this.teaService.create(createTeaDto);
+  create(@Body() createTeaDto: CreateTeaDto, @Query() username: string) {
+    return this.teaService.create(createTeaDto, username);
   }
 
   @UseGuards(AuthGuard)

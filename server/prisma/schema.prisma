@@ -139,7 +139,7 @@ model users {
   last_name                           String?            @db.VarChar(30)
   gender                              Gender?
   phone_number                        String             @unique(map: "users_phone_number_unique") @db.VarChar(11)
-  username                            String             @db.VarChar(40)
+  username                            String             @unique @db.VarChar(40)
   telegram_chat_id                    BigInt?
   password                            String?            @db.VarChar(255)
   profile_picture                     String?            @db.VarChar(255)

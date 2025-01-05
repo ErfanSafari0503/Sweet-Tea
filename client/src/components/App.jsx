@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoadingScreen from "../pages/LoadingPage";
 import PageNotFound from "../pages/PageNotFoundPage";
 
-//Contexts
 import { AuthProvider } from "../contexts/AuthContext";
 
 const Home = lazy(() => import("../pages/HomePage"));

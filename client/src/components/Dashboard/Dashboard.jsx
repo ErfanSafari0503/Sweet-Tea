@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../hooks/useAuth";
 import SideMenu from "./SideMenu";
-import PageNotFound from "../pages/PageNotFoundPage";
+import PageNotFound from "../../pages/PageNotFoundPage";
 
 const initialState = {
   firstName: "",
@@ -60,9 +60,9 @@ export default function Dashboard() {
           dispatch({
             type: "userData/loaded",
             payload: {
-              firstName: response.firstName,
-              walletAmount: response.walletAmount,
-              teaAmount: response.giftCount,
+              firstName: response.data.firstName,
+              walletAmount: response.data.walletAmount,
+              teaAmount: response.data.giftCount,
             },
           });
           dispatch({ type: "loading/ended" });
@@ -149,13 +149,17 @@ export default function Dashboard() {
                 />
               </div>
               <div className="w-full flex flex-col items-center gap-6 px-10">
-                <h2 className="text-2xl">
-                  <span>
-                    <span className="text-primary">{state.teaAmount}</span> تا{" "}
-                  </span>
-                  چایی نبات تو جیبته !
-                </h2>
-                <div className="flex bg-secondary w-2/5 justify-between items-center rounded-lg overflow-hidden">
+                {state.teaAmount === 0 ? (
+                  <h2 className="text-2xl">متاسفانه چایی نباتت تموم شده.</h2>
+                ) : (
+                  <h2 className="text-2xl">
+                    <span>
+                      <span className="text-primary">{state.teaAmount}</span> تا{" "}
+                    </span>
+                    چایی نبات تو جیبته !
+                  </h2>
+                )}
+                {/* <div className="flex bg-secondary w-2/5 justify-between items-center rounded-lg overflow-hidden">
                   <div
                     className="bg-primary w-1/4 py-2 text-center text-xl text-white"
                     id="addTea"
@@ -171,16 +175,16 @@ export default function Dashboard() {
                   >
                     -
                   </div>
-                </div>
-                <div className="w-full flex justify-between">
+                </div> */}
+                <div className="w-full text-center">
                   <div className="px-6 py-2 text-white bg-primary rounded-2xl xl:bg-slate-200 text-center">
                     <span className="text-2xl font-bold">دمش کن</span>
                   </div>
-                  <div className="px-6 py-2 font-bold bg-secondary rounded-2xl xl:bg-slate-200 flex justify-center items-center">
+                  {/* <div className="px-6 py-2 font-bold bg-secondary rounded-2xl xl:bg-slate-200 flex justify-center items-center">
                     <span>
                       <span>{state.selectedTea}</span> عدد
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

@@ -364,7 +364,7 @@ export default function SignUpForm() {
       </div>
       <div className="flex flex-col grow justify-end gap-2 my-8">
         <Button
-          styles="w-full bg-primary p-2 rounded-xl text-zinc-50 text-base"
+          styles="w-full bg-primary px-2 py-4 rounded-xl text-zinc-50 text-base"
           type="submit"
           isDisabled={state.isLoading}
         >

@@ -87,7 +87,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="font-primary w-full bg-secondary">
+    <div className="font-primary w-full h-full overflow-auto bg-secondary">
       <SideMenu isOpen={state.isOpen} />
       <div className="px-10 py-4">
         <header>
@@ -155,13 +155,22 @@ export default function Dashboard() {
                   </span>
                   چایی نبات تو جیبته !
                 </h2>
-                <div className="w-full relative">
-                  <input
-                    type="range"
-                    className="custom-range"
-                    min="0"
-                    max="100"
-                  />
+                <div className="flex bg-secondary w-2/5 justify-between items-center rounded-lg overflow-hidden">
+                  <div
+                    className="bg-primary w-1/4 py-2 text-center text-xl text-white"
+                    id="addTea"
+                    onClick={handleChange}
+                  >
+                    +
+                  </div>
+                  <p className="text-sm">{state.teaValue}</p>
+                  <div
+                    className="bg-primary w-1/4 py-2 text-center text-xl text-white"
+                    id="removeTea"
+                    onClick={handleChange}
+                  >
+                    -
+                  </div>
                 </div>
                 <div className="w-full flex justify-between">
                   <div className="px-6 py-2 text-white bg-primary rounded-2xl xl:bg-slate-200 text-center">

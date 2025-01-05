@@ -14,7 +14,7 @@ export default function SideMenu({ isOpen }) {
           : "bg-white fixed h-screen z-50 max-w-[50%] overflow-y-auto hidden"
       }
     >
-      <div className="mx-14 my-16 flex flex-col gap-4 items-center">
+      <div className="mx-24 my-16 flex flex-col gap-4 items-center">
         <div>
           <img className="w-32" src="src/images/Avatar2.svg" alt="" />
         </div>
@@ -25,7 +25,7 @@ export default function SideMenu({ isOpen }) {
       </div>
       <div className="mx-10">
         <ul className="flex flex-col justify-center items-center my-8 gap-10">
-          <li className="flex justify-start w-full gap-4 items-center activated">
+          <li className="flex justify-start w-full gap-4 items-center">
             <span>
               <img src="src/images/dashboard.svg" alt="" />
             </span>
@@ -78,7 +78,7 @@ export default function SideMenu({ isOpen }) {
               <img src="src/images/log-out.svg" alt="" />
             </span>
             <Link to="/" className="text-xl">
-              پشتیبانی
+              بیرون رفتن
             </Link>
           </li>
         </ul>

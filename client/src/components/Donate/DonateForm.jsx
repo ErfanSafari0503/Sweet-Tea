@@ -119,7 +119,7 @@ export default function DonateForm() {
     return <LoadingScreen />;
   } else {
     return (
-      <div className="font-primary w-full bg-secondary">
+      <div className="font-primary h-full w-full overflow-auto bg-secondary ">
         <div className="px-10 py-4">
           <header>
             <ul className="flex w-full flex-row text-base items-center justify-center">
@@ -130,7 +130,7 @@ export default function DonateForm() {
           </header>
           <main className="w-full bg-white rounded-2xl my-12 px-8 py-4 ">
             <div className="mb-8">
-              <div className="flex items-center">
+              <div className="flex flex-col gap-2 items-center">
                 <img className="w-20" src={state.profilePicture} alt="" />
                 <h1 className="text-xl font-bold mx-28">{state.username}</h1>
               </div>
@@ -142,7 +142,7 @@ export default function DonateForm() {
               <div className="flex flex-col gap-2">
                 <h1 className="text-xl font-bold">تعداد چایی</h1>
               </div>
-              <div className="flex bg-amber-50 w-2/5 justify-between items-center rounded-lg overflow-hidden">
+              <div className="flex bg-secondary w-2/5 justify-between items-center rounded-lg overflow-hidden">
                 <div
                   className="bg-primary w-1/4 py-2 text-center text-xl text-white"
                   id="addTea"
@@ -248,7 +248,7 @@ export default function DonateForm() {
               <div className="flex gap-4 items-start">
                 <Input
                   type="checkbox"
-                  className="scale-150 size-8 border-gray-300"
+                  className="scale-100 size-8 border-gray-300"
                   id="TermsAndConditions"
                   name="termsAndConditions"
                   value={state.termsAndConditions}

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../Reusable/Input";
 import Button from "../Reusable/Button";
+import { useAuth } from "../../hooks/useAuth";
 
 const initialState = {
   phoneNumber: "",
@@ -34,6 +35,7 @@ function reducer(state, action) {
 
 export default function SignInForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { setAccessToken } = useAuth();
   const navigate = useNavigate();
 
   function handleChange(e) {
@@ -118,6 +120,7 @@ export default function SignInForm() {
         .then((response) => {
           if (response.status === 200 || response.status === 201) {
             dispatch({ type: "SUCCESS" });
+            setAccessToken(response.data.access_token);
             navigate("/dashboard");
           } else {
             dispatch({

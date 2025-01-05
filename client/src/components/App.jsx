@@ -4,6 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoadingScreen from "../pages/LoadingPage";
 import PageNotFound from "../pages/PageNotFoundPage";
 
+//Contexts
+import { AuthProvider } from "../contexts/AuthContext";
+
 const Home = lazy(() => import("../pages/HomePage"));
 const AboutUs = lazy(() => import("../pages/AboutUsPage"));
 const ContactUs = lazy(() => import("../pages/ContactUsPage"));
@@ -14,7 +17,7 @@ const Donate = lazy(() => import("../pages/DonatePage"));
 
 export default function App() {
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
         <Suspense fallback={<LoadingScreen />}>
           <Routes>
@@ -29,6 +32,6 @@ export default function App() {
           </Routes>
         </Suspense>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   );
 }

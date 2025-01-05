@@ -1,6 +1,9 @@
 import { useEffect, useReducer } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../../hooks/useAuth";
 import SideMenu from "./SideMenu";
+import PageNotFound from "../pages/PageNotFoundPage";
 
 const initialState = {
   firstName: "",
@@ -23,12 +26,16 @@ function reducer(state, action) {
         firstName: action.payload.firstName,
         walletAmount: action.payload.walletAmount,
         teaAmount: action.payload.teaAmount,
-        visits: action.payload.visits,
-        recivedDonations: action.payload.recivedDonations,
-        sendedDonations: action.payload.sendedDonations,
+        // visits: action.payload.visits,
+        // recivedDonations: action.payload.recivedDonations,
+        // sendedDonations: action.payload.sendedDonations,
       };
     case "menu/toggled":
       return { state, isOpen: !state.isOpen };
+    case "loading/started":
+      return { ...state, isLoading: true };
+    case "loading/ended":
+      return { ...state, isLoading: false };
     case "submit/started":
       return { ...state, isLoading: true };
     default:
@@ -38,8 +45,34 @@ function reducer(state, action) {
 
 export default function Dashboard() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { accessToken } = useAuth();
 
-  useEffect(function () {}, []);
+  useEffect(
+    function () {
+      dispatch({ type: "loading/started" });
+      axios
+        .get("http://localhost:3002/v1/tea", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          dispatch({
+            type: "userData/loaded",
+            payload: {
+              firstName: response.firstName,
+              walletAmount: response.walletAmount,
+              teaAmount: response.giftCount,
+            },
+          });
+          dispatch({ type: "loading/ended" });
+        })
+        .catch(() => {
+          throw new Error("Server : An unexpected error occurred.");
+        });
+    },
+    [accessToken]
+  );
 
   function handleChange(e) {
     const { id } = e.target;
@@ -47,6 +80,10 @@ export default function Dashboard() {
     if (id === "toggleMenu") {
       dispatch({ type: "menu/toggled" });
     }
+  }
+
+  if (!accessToken) {
+    return <PageNotFound />;
   }
 
   return (
@@ -73,7 +110,7 @@ export default function Dashboard() {
         <main className="w-full bg-white rounded-2xl my-12 px-8 py-4 ">
           <article className="w-full py-2 flex flex-col gap-16">
             <div className="flex justify-center flex-col gap-4 items-center py-4 relative">
-              <h2 class="absolute top-0 text-5xl z-0 font-bold text-gray-200 opacity-30 text-center translate-y-[-20%]">
+              <h2 className="absolute top-0 text-5xl z-0 font-bold text-gray-200 opacity-30 text-center translate-y-[-20%]">
                 Dashboard
               </h2>
               <h2 className="text-2xl font-bold text-center text-primary">

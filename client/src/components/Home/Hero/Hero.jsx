@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../../Reusable/Button";
 
 export default function Hero() {
@@ -56,10 +57,12 @@ export default function Hero() {
       </div>
       <div className="w-full xl:hidden">
         <Button styles="w-full bg-primary p-4 rounded-xl text-zinc-50 text-2xl">
-          <p className="flex justify-center gap-2">
-            ثبت‌نام
-            <img className="w-8" src="src/images/left-arrow.svg" alt="" />
-          </p>
+          <Link to="/sign-up">
+            <p className="flex justify-center gap-2">
+              ثبت‌نام
+              <img className="w-8" src="src/images/left-arrow.svg" alt="" />
+            </p>
+          </Link>
         </Button>
       </div>
     </section>

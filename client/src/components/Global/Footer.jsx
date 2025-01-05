@@ -4,13 +4,17 @@ import Button from "../Reusable/Button";
 
 Footer.propTypes = {
   isScrollable: PropTypes.bool,
+  scrollToTop: PropTypes.func,
 };
 
-export default function Footer({ isScrollable = false }) {
+export default function Footer({ isScrollable = false, scrollToTop }) {
   return (
     <footer className="w-full font-primary py-4 px-8 bg-[#FDF0E84D] relative">
       {isScrollable ? (
-        <Button styles="absolute p-4 bg-primary rounded-full left-6 -top-10">
+        <Button
+          styles="absolute p-4 bg-primary rounded-full left-6 -top-10"
+          onClick={scrollToTop}
+        >
           <img className="size-10" src="src/images/Up.svg" alt="" />
         </Button>
       ) : null}

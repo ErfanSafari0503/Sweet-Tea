@@ -1,11 +1,11 @@
 import ContactUs from "../components/Contact_Us/ContactUs";
-import Footer from "../components/Home/Footer/Footer";
+import Footer from "../components/Global/Footer";
 
 export default function ContactUsPage() {
   return (
     <>
       <ContactUs />
-      <Footer />
+      <Footer isScrollable={true} />
     </>
   );
 }

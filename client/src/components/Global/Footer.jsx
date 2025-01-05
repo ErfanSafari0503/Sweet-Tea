@@ -1,12 +1,19 @@
 import { NavLink } from "react-router-dom";
-import Button from "../../Reusable/Button";
+import PropTypes from "prop-types";
+import Button from "../Reusable/Button";
 
-export default function Footer() {
+Footer.propTypes = {
+  isScrollable: PropTypes.bool,
+};
+
+export default function Footer({ isScrollable = false }) {
   return (
     <footer className="w-full font-primary py-4 px-8 bg-[#FDF0E84D] relative">
-      <Button styles="absolute p-4 bg-primary rounded-full left-6 -top-10">
-        <img className="size-10" src="src/images/Up.svg" alt="" />
-      </Button>
+      {isScrollable ? (
+        <Button styles="absolute p-4 bg-primary rounded-full left-6 -top-10">
+          <img className="size-10" src="src/images/Up.svg" alt="" />
+        </Button>
+      ) : null}
       <article className="flex flex-col w-full gap-10 my-4 pb-4 border-b-default border-slate-400">
         <div className="px-4 py-2 bg-secondary font-bold rounded-lg  max-w-fit">
           چایی نبات
@@ -24,15 +31,11 @@ export default function Footer() {
               <span className="border-l-default border-slate-400 p-3"></span>
             </li>
             <li className="pr-3 text-base flex items-center">
-              <NavLink to="/">حمایت مالی</NavLink>
-              <span className="border-l-default border-slate-400 p-3"></span>
-            </li>
-            <li className="pr-3 text-base flex items-center">
-              <NavLink to="/">ارتباط با ما</NavLink>
+              <NavLink to="/contact-us">ارتباط با ما</NavLink>
               <span className="border-l-default border-slate-400 p-3  "></span>
             </li>
             <li className="pr-3 text-base">
-              <NavLink to="/">درباره ما</NavLink>
+              <NavLink to="/about-us">درباره ما</NavLink>
             </li>
           </ul>
         </div>

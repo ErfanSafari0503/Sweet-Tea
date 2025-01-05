@@ -1,4 +1,4 @@
-import Footer from "../components/Home/Footer/Footer";
+import Footer from "../components/Global/Footer";
 import PageNotFound from "../components/Page_Not_Found/PageNotFound";
 
 export default function PageNotFoundPage() {

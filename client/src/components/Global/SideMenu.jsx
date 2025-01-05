@@ -22,27 +22,22 @@ export default function SideMenu({ isOpen = false }) {
             </NavLink>
           </li>
           <li className="text-center">
-            <NavLink to="/" className="text-xl text-center">
-              داشبورد
+            <NavLink to="/sign-in" className="text-xl text-center">
+              ورود
             </NavLink>
           </li>
           <li className="text-center">
-            <NavLink to="/" className="text-xl">
-              سوالات متداول
+            <NavLink to="/sign-up" className="text-xl text-center">
+              ثبت نام
             </NavLink>
           </li>
           <li className="text-center">
-            <NavLink to="/" className="text-xl">
-              حمایت مالی
-            </NavLink>
-          </li>
-          <li className="text-center">
-            <NavLink to="/" className="text-xl">
+            <NavLink to="/about-us" className="text-xl">
               درباره ما
             </NavLink>
           </li>
           <li className="text-center">
-            <NavLink to="/" className="text-xl">
+            <NavLink to="/contact-us" className="text-xl">
               ارتباط با ما
             </NavLink>
           </li>

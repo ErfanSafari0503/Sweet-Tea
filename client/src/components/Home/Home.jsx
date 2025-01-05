@@ -1,12 +1,11 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
-import SideMenu from "./SideMenu";
+import SideMenu from "../Global/SideMenu";
 import Hero from "./Hero/Hero";
 import Features from "./Features/Features";
 import HowItWorks from "./How_it_works/HowItWorks";
 import FrequentlyAskedQuestion from "./Frequently_Asked_Question/FrequentlyAskedQuestion";
 import Comments from "./Comments/Comments";
-import Footer from "./Footer/Footer";
 
 export default function Home() {
   const [menuToggled, setMenuToggled] = useState(false);
@@ -40,7 +39,6 @@ export default function Home() {
         <FrequentlyAskedQuestion />
         <Comments />
       </main>
-      <Footer />
     </div>
   );
 }

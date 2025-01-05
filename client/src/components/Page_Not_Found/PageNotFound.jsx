@@ -1,15 +1,29 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import SideMenu from "../Global/SideMenu";
 
 export default function PageNotFound() {
+  const [menuToggled, setMenuToggled] = useState(false);
+
+  function handleMenuToggled() {
+    setMenuToggled(!menuToggled);
+  }
+
   return (
     <div className="font-primary grow w-full bg-secondary">
+      <SideMenu isOpen={menuToggled} />
       <header className="px-10 py-4 bg-white shadow-md sticky top-0 z-50">
         <ul className="flex justify-between items-center w-full">
           <li className="order-last px-4 py-2 bg-secondary rounded-lg xl:bg-slate-200">
             <Link to="/">چایی نبات</Link>
           </li>
           <li>
-            <img src="src/images/Menu.svg" className="size-12" alt="" />
+            <img
+              src="src/images/Menu.svg"
+              className="size-12"
+              alt=""
+              onClick={handleMenuToggled}
+            />
           </li>
         </ul>
       </header>

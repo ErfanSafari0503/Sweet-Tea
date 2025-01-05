@@ -181,7 +181,7 @@ export default function SignInForm() {
       <div className="flex flex-col grow justify-end gap-2">
         <Button
           type="submit"
-          styles="w-full bg-primary p-2 rounded-xl text-zinc-50 text-base"
+          styles="w-full bg-primary px-2 py-4 rounded-xl text-zinc-50 text-base"
         >
           ورود
         </Button>

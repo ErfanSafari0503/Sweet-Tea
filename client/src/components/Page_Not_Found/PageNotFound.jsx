@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function PageNotFound() {
   return (
-    <div className="font-primary w-full bg-secondary">
+    <div className="font-primary grow w-full bg-secondary">
       <header className="px-10 py-4 bg-white shadow-md sticky top-0 z-50">
         <ul className="flex justify-between items-center w-full">
           <li className="order-last px-4 py-2 bg-secondary rounded-lg xl:bg-slate-200">

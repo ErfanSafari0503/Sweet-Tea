@@ -10,15 +10,15 @@ export default function SideMenu({ isOpen = false }) {
     <aside
       className={
         isOpen
-          ? "bg-slate-200 fixed h-screen z-50 max-w-[50%]"
-          : "bg-slate-200 fixed h-screen z-50 max-w-[50%] hidden"
+          ? "bg-white fixed h-screen z-50 max-w-[50%]"
+          : "bg-white fixed h-screen z-50 max-w-[50%] hidden"
       }
     >
       <div className="mx-14">
-        <ul className="flex flex-col justify-center items-center my-8 p-4 gap-10">
+        <ul className="flex flex-col justify-center items-center my-8 p-4 py-12 gap-10">
           <li className="text-center">
-            <NavLink to="/">
-              <img src="src/images/Home.svg" alt="" />
+            <NavLink to="/" className="text-xl text-center">
+              صفحه اصلی
             </NavLink>
           </li>
           <li className="text-center">

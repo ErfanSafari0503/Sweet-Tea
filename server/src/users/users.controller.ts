@@ -8,7 +8,7 @@ export class UsersController {
  constructor(private readonly usersService: UsersService) {}
 
     @Get(':phone')
-    async getUserByPhone(@Param() phone: string) {
+    async getUserByPhone(@Param("phone") phone: string) {
         return this.usersService.getUserByPhone(phone);
       }
 

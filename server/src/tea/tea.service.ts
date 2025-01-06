@@ -30,12 +30,13 @@ export class TeaService {
       count,
     } = createTeaDto;
     if (username) {
-      id = await this.prisma.users.findUnique({
+      const id = await this.prisma.users.findUnique({
         where: {username: username}, 
         select: {id: true}
       })
         receiver_user_id = id.id
     }
+    
 
     const gift = await this.prisma.gifts.create({
       data: {
@@ -49,14 +50,14 @@ export class TeaService {
         status,
         received_at,
         scheduled_start_at,
-        scheduled_end_at,
+        scheduled_end_at
       },
     });
 
     var gift_products = [];
 
     for (let index = 0; index < count; index++) {
-      gift_products[index] = this.prisma.gift_products.create({
+      gift_products[index] = await this.prisma.gift_products.create({
         data: {
           gift_id: gift.id,
           product_id: product_id,
@@ -91,26 +92,31 @@ export class TeaService {
     });
 
     let giftCount = 0;
-    const aggregatedGifts = gifts.map(async (gift) => {
-      giftCount += gift.gift_products.length;
-      const sender = `${gift.users_gifts_sender_user_idTousers.first_name} ${gift.users_gifts_sender_user_idTousers.last_name}`;
-      const products = gift.gift_products.map((gp) => ({
-        product: gp.products.name,
-        size: gp.products.size,
-        buffet: gp.products.buffets.name,
-      }));
-
-      products.map((product) => ({
-        product: product.product,
-        size: product.size,
-        buffet: product.buffet,
-        message: gift.message,
-        nickname: gift.nickname,
-        title: gift.title,
-        sender,
-        productCount: gift.gift_products.length, // Count products for each gift
-      }));
-    });
+    const aggregatedGifts = await Promise.all(
+      gifts.map(async (gift) => {
+        giftCount += gift.gift_products.length;
+        let sender = "donater";
+        if (gift.users_gifts_sender_user_idTousers) {
+          sender = `${gift.users_gifts_sender_user_idTousers.first_name} ${gift.users_gifts_sender_user_idTousers.last_name}`;
+        }
+    
+        const products = gift.gift_products.map((gp) => ({
+          product: gp.products.name,
+          size: gp.products.size,
+          buffet: gp.products.buffets.name,
+        }));
+    
+        return products.map((product) => ({
+          product: product.product,
+          size: product.size,
+          buffet: product.buffet,
+          message: gift.message,
+          nickname: gift.nickname,
+          title: gift.title,
+          sender,
+        }));
+      })
+    );
 
     const reciverUser = await this.prisma.users.findUnique({
       where: { id: this.request['user'].id },
@@ -125,6 +131,7 @@ export class TeaService {
       gifts: aggregatedGifts.flat(),
       walletAmount: wallet.balance,
       firstName: reciverUser.first_name,
+      username: reciverUser.username,
       giftCount: giftCount,
     };
   }

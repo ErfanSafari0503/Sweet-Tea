@@ -1,9 +1,10 @@
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 SideMenu.propTypes = {
   isOpen: PropTypes.bool,
 };
+const username = "Username";
 
 export default function SideMenu({ isOpen }) {
   return (
@@ -20,14 +21,16 @@ export default function SideMenu({ isOpen }) {
         </div>
         <div className="flex flex-col items-center gap-2">
           <h1 className="text-2xl">username</h1>
-          <h3 className="text-md text-slate-500">sweettea.ir/username</h3>
+          <Link to={`/donate/:${username}`}>
+            <h3 className="text-md text-slate-500">sweettea.ir/username</h3>
+          </Link>
         </div>
       </div>
       <div className="mx-10">
         <ul className="flex flex-col justify-center items-center my-8 gap-10">
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/dashboard.svg" alt="" />
+              <img src="/images/dashboard.svg" alt="" />
             </span>
             <Link to="/dashboard" className="text-xl">
               داشبورد
@@ -35,7 +38,7 @@ export default function SideMenu({ isOpen }) {
           </li>
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/wallet-icon.svg" alt="" />
+              <img src="/images/wallet-icon.svg" alt="" />
             </span>
             <Link to="/wallet" className="text-xl">
               کیف پول
@@ -43,7 +46,7 @@ export default function SideMenu({ isOpen }) {
           </li>
           <li className="flex justify-start w-full gap-4 items-center ">
             <span>
-              <img src="src/images/gift.svg" alt="" />
+              <img src="/images/gift.svg" alt="" />
             </span>
             <Link to="/gifts" className="text-xl">
               هدایا
@@ -51,7 +54,7 @@ export default function SideMenu({ isOpen }) {
           </li>
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/history.svg" alt="" />
+              <img src="/images/history.svg" alt="" />
             </span>
             <Link to="/logs" className="text-xl">
               تاریخچه
@@ -59,7 +62,7 @@ export default function SideMenu({ isOpen }) {
           </li>
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/settings.svg" alt="" />
+              <img src="/images/settings.svg" alt="" />
             </span>
             <Link to="/settings" className="text-xl">
               تنظیمات
@@ -67,7 +70,7 @@ export default function SideMenu({ isOpen }) {
           </li>
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/support.svg" alt="" />
+              <img src="/images/support.svg" alt="" />
             </span>
             <Link to="/support" className="text-xl">
               پشتیبانی
@@ -75,7 +78,7 @@ export default function SideMenu({ isOpen }) {
           </li>
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/log-out.svg" alt="" />
+              <img src="/images/log-out.svg" alt="" />
             </span>
             <Link to="/" className="text-xl">
               بیرون رفتن

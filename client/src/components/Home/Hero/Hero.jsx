@@ -23,22 +23,22 @@ export default function Hero() {
           <div className="flex -mr-6">
             <img
               className="size-8 border-default border-stone-400 rounded-full relative flex right-6"
-              src="src/images/shamsi.png"
+              src="/images/shamsi.png"
               alt=""
             />
             <img
               className="size-8 border-default border-stone-400 rounded-full relative flex right-4"
-              src="src/images/sharif.png"
+              src="/images/sharif.png"
               alt=""
             />
             <img
               className="size-8 border-default border-stone-400 rounded-full relative flex right-2"
-              src="src/images/taba.png"
+              src="/images/taba.png"
               alt=""
             />
             <img
               className="size-8 border-default border-stone-400 rounded-full relative flex"
-              src="src/images/tehran.png"
+              src="/images/tehran.png"
               alt=""
             />
           </div>
@@ -60,7 +60,7 @@ export default function Hero() {
           <Link to="/sign-up">
             <p className="flex justify-center gap-2">
               ثبت‌نام
-              <img className="w-8" src="src/images/left-arrow.svg" alt="" />
+              <img className="w-8" src="/images/left-arrow.svg" alt="" />
             </p>
           </Link>
         </Button>

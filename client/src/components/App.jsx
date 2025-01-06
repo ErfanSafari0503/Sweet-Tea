@@ -5,6 +5,7 @@ import LoadingScreen from "../pages/LoadingPage";
 import PageNotFound from "../pages/PageNotFoundPage";
 
 import { AuthProvider } from "../contexts/AuthContext";
+import { UserProvider } from "../contexts/UserContext";
 
 const Home = lazy(() => import("../pages/HomePage"));
 const AboutUs = lazy(() => import("../pages/AboutUsPage"));
@@ -17,20 +18,22 @@ const Donate = lazy(() => import("../pages/DonatePage"));
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Suspense fallback={<LoadingScreen />}>
-          <Routes>
-            <Route index element={<Home />} />
-            <Route path="about-us" element={<AboutUs />} />
-            <Route path="contact-us" element={<ContactUs />} />
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="sign-in" element={<SignIn />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="donate" element={<Donate />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <Suspense fallback={<LoadingScreen />}>
+            <Routes>
+              <Route index element={<Home />} />
+              <Route path="about-us" element={<AboutUs />} />
+              <Route path="contact-us" element={<ContactUs />} />
+              <Route path="sign-up" element={<SignUp />} />
+              <Route path="sign-in" element={<SignIn />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="donate/:username" element={<Donate />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </UserProvider>
     </AuthProvider>
   );
 }

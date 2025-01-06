@@ -5,7 +5,7 @@ Notification.propTypes = {
   message: PropTypes.string,
 };
 
-//src="src/images/success-icon.svg"
+//src="/images/success-icon.svg"
 
 export default function Notification({ icon, message }) {
   return (

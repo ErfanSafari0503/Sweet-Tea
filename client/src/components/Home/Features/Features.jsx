@@ -16,17 +16,17 @@ export default function Features() {
       </article>
       <article className="flex w-full flex-col gap-10">
         <FeaturesItems
-          image="src/images/suprise-1.svg"
+          image="/images/suprise-1.svg"
           title="چایی نبات هدیه بده یا هدیه بگیر!"
           paragraph="با لینک اختصاصی خودت، از دوستانت چایی نبات بگیر یا برای اون‌ها هدیه بفرست. سریع و دوستانه!"
         />
         <FeaturesItems
-          image="src/images/card-1.svg"
+          image="/images/card-1.svg"
           title="حتی برای کسایی که حساب ندارن"
           paragraph="با شماره تلفن، تلگرام یا ایمیل، به کسی که حساب نداره هم چایی نبات هدیه بده."
         />
         <FeaturesItems
-          image="src/images/wow-1.svg"
+          image="/images/wow-1.svg"
           title="زمان‌بندی کن و سورپرایز کن!"
           paragraph="برای آشنایی با کراش یا دعوت به یک دیت، چایی نبات رو با تاریخ و ساعت تنظیم کن."
         />

@@ -19,7 +19,7 @@ export default function AboutUs() {
           </li>
           <li>
             <img
-              src="src/images/Menu.svg"
+              src="/images/Menu.svg"
               className="size-12"
               alt=""
               onClick={handleMenuToggled}
@@ -73,7 +73,7 @@ export default function AboutUs() {
               <div className="flex gap-4 self-start items-center">
                 <img
                   className="w-16 order-first"
-                  src="src/images/avatar-mini.svg"
+                  src="/images/avatar-mini.svg"
                   alt=""
                 />
                 <div className="text-right">
@@ -84,7 +84,7 @@ export default function AboutUs() {
               <div className="flex gap-4 self-end items-center">
                 <img
                   className="w-16 order-last"
-                  src="src/images/avatar-mini.svg"
+                  src="/images/avatar-mini.svg"
                   alt=""
                 />
                 <div className="text-left">
@@ -95,7 +95,7 @@ export default function AboutUs() {
               <div className="flex gap-4 self-start items-center">
                 <img
                   className="w-16 order-first"
-                  src="src/images/avatar-mini.svg"
+                  src="/images/avatar-mini.svg"
                   alt=""
                 />
                 <div className="text-right">
@@ -106,7 +106,7 @@ export default function AboutUs() {
               <div className="flex gap-4 self-end items-center">
                 <img
                   className="w-16 order-last"
-                  src="src/images/avatar-mini.svg"
+                  src="/images/avatar-mini.svg"
                   alt=""
                 />
                 <div className="text-left">
@@ -117,7 +117,7 @@ export default function AboutUs() {
               <div className="flex gap-4 self-start items-center">
                 <img
                   className="w-16 order-first"
-                  src="src/images/avatar-mini.svg"
+                  src="/images/avatar-mini.svg"
                   alt=""
                 />
                 <div className="text-right">

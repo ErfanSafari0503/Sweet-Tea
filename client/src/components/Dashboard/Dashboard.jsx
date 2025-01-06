@@ -1,51 +1,14 @@
-import { useEffect, useReducer } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../hooks/useAuth";
+import { useUser } from "../../hooks/useUser";
 import SideMenu from "./SideMenu";
 import PageNotFound from "../../pages/PageNotFoundPage";
 
-const initialState = {
-  firstName: "",
-  walletAmount: 0,
-  teaAmount: 0,
-  selectedTea: 0,
-  visits: 0,
-  recivedDonations: 0,
-  sendedDonations: 0,
-  isOpen: false,
-  isLoading: false,
-  error: {},
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "userData/loaded":
-      return {
-        ...state,
-        firstName: action.payload.firstName,
-        walletAmount: action.payload.walletAmount,
-        teaAmount: action.payload.teaAmount,
-        // visits: action.payload.visits,
-        // recivedDonations: action.payload.recivedDonations,
-        // sendedDonations: action.payload.sendedDonations,
-      };
-    case "menu/toggled":
-      return { state, isOpen: !state.isOpen };
-    case "loading/started":
-      return { ...state, isLoading: true };
-    case "loading/ended":
-      return { ...state, isLoading: false };
-    case "submit/started":
-      return { ...state, isLoading: true };
-    default:
-      return state;
-  }
-}
-
 export default function Dashboard() {
-  const [state, dispatch] = useReducer(reducer, initialState);
   const { accessToken } = useAuth();
+  const { state, dispatch } = useUser();
 
   useEffect(
     function () {
@@ -63,6 +26,7 @@ export default function Dashboard() {
               firstName: response.data.firstName,
               walletAmount: response.data.walletAmount,
               teaAmount: response.data.giftCount,
+              isAuthenticated: true,
             },
           });
           dispatch({ type: "loading/ended" });
@@ -71,7 +35,7 @@ export default function Dashboard() {
           throw new Error("Server : An unexpected error occurred.");
         });
     },
-    [accessToken]
+    [accessToken, dispatch]
   );
 
   function handleChange(e) {
@@ -82,7 +46,7 @@ export default function Dashboard() {
     }
   }
 
-  if (!accessToken) {
+  if (!state.isAuthenticated) {
     return <PageNotFound />;
   }
 
@@ -93,9 +57,9 @@ export default function Dashboard() {
         <header>
           <ul className="flex w-full flex-row text-base justify-between items-center">
             <li className="order-last flex gap-8  xl:hidden">
-              <img src="src/images/light.svg" className="size-12" alt="" />
+              <img src="/images/light.svg" className="size-12" alt="" />
               <img
-                src="src/images/Menu.svg"
+                src="/images/Menu.svg"
                 id="toggleMenu"
                 className="size-12"
                 alt=""
@@ -124,7 +88,7 @@ export default function Dashboard() {
             <div className="w-full bg-tertiary  flex py-4 px-4 relative rounded-2xl">
               <div className="w-1/5 order-1">
                 <img
-                  src="src/images/Wallet.svg"
+                  src="/images/Wallet.svg"
                   className="absolute size-max -top-16 -right-16 min-[500px]:-top-8 min-[500px]:-right-8"
                   alt=""
                 />
@@ -143,7 +107,7 @@ export default function Dashboard() {
             <div className="w-full bg-tertiary flex flex-col py-4 px-4 rounded-2xl relative">
               <div className="w-full mb-24">
                 <img
-                  src="src/images/tea2.svg"
+                  src="/images/tea2.svg"
                   className="absolute w-80 left-[50%] -translate-x-1/2 -translate-y-[45%] top-0"
                   alt=""
                 />
@@ -192,19 +156,19 @@ export default function Dashboard() {
               <h2 className="text-2xl font-bold mb-4">آمار ارقام</h2>
               <div className="w-full bg-tertiary rounded-2xl px-10 py-4 flex items-center">
                 <div>
-                  <img src="src/images/eye.svg" className="size-12" alt="" />
+                  <img src="/images/eye.svg" className="size-12" alt="" />
                 </div>
                 <div className="flex flex-col mx-4">
                   <span className="text-md">تعداد بازدید</span>
                   <span className="text-xl font-bold">{state.visits}</span>
                 </div>
                 <div className="mr-auto">
-                  <img src="src/images/chart.svg" className="w-36" alt="" />
+                  <img src="/images/chart.svg" className="w-36" alt="" />
                 </div>
               </div>
               <div className="w-full bg-tertiary rounded-2xl px-10 py-4 flex items-center">
                 <div>
-                  <img src="src/images/balon.svg" className="size-12" alt="" />
+                  <img src="/images/balon.svg" className="size-12" alt="" />
                 </div>
                 <div className="flex flex-col mx-4">
                   <span className="text-md">تعداد چایی دریافتی</span>
@@ -213,16 +177,12 @@ export default function Dashboard() {
                   </span>
                 </div>
                 <div className="mr-auto">
-                  <img src="src/images/chart.svg" className="w-36" alt="" />
+                  <img src="/images/chart.svg" className="w-36" alt="" />
                 </div>
               </div>
               <div className="w-full bg-tertiary rounded-2xl px-10 py-4 flex items-center">
                 <div>
-                  <img
-                    src="src/images/telegraph.svg"
-                    className="size-12"
-                    alt=""
-                  />
+                  <img src="/images/telegraph.svg" className="size-12" alt="" />
                 </div>
                 <div className="flex flex-col mx-4">
                   <span className="text-md">تعداد چایی ارسالی</span>
@@ -231,7 +191,7 @@ export default function Dashboard() {
                   </span>
                 </div>
                 <div className="mr-auto">
-                  <img src="src/images/chart.svg" className="w-36" alt="" />
+                  <img src="/images/chart.svg" className="w-36" alt="" />
                 </div>
               </div>
             </div>

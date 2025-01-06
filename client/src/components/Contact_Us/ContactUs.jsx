@@ -19,7 +19,7 @@ export default function ContactUs() {
           </li>
           <li>
             <img
-              src="src/images/Menu.svg"
+              src="/images/Menu.svg"
               className="size-12"
               alt=""
               onClick={handleMenuToggled}
@@ -46,14 +46,14 @@ export default function ContactUs() {
               <div className="flex flex-col gap-4">
                 <div className="flex justify-between gap-4">
                   <div className="flex flex-col gap-2 items-center justify-center bg-secondary px-4 py-6 w-1/2 rounded-2xl">
-                    <img className="w-10" src="src/images/phone.svg" alt="" />
+                    <img className="w-10" src="/images/phone.svg" alt="" />
                     <h2 className="text-base font-bold">تلفن تماس</h2>
                     <p dir="ltr" className="text-base">
                       +98 912 345 6789
                     </p>
                   </div>
                   <div className="flex flex-col gap-2 items-center justify-center bg-secondary px-4 py-6 w-1/2 rounded-2xl">
-                    <img className="w-10" src="src/images/email.svg" alt="" />
+                    <img className="w-10" src="/images/email.svg" alt="" />
                     <h2 className="text-base font-bold">ایمیل</h2>
                     <p dir="ltr" className="text-base">
                       SweetTea@gmail.com
@@ -62,11 +62,7 @@ export default function ContactUs() {
                 </div>
                 <div className="flex">
                   <div className="flex flex-col gap-2 items-center justify-center bg-secondary px-4 py-6 grow rounded-2xl">
-                    <img
-                      className="w-10"
-                      src="src/images/location.svg"
-                      alt=""
-                    />
+                    <img className="w-10" src="/images/location.svg" alt="" />
                     <h2 className="text-base font-bold">آدرس</h2>
                     <p className="text-base">
                       تهران، خیابان لورم، کوچه لورم، پلاک لورم، طبقه لورم
@@ -117,7 +113,7 @@ export default function ContactUs() {
                   >
                     <p className="flex justify-center gap-2 text-base">
                       ارسال فرم
-                      <img className="w-6" src="src/images/send.svg" alt="" />
+                      <img className="w-6" src="/images/send.svg" alt="" />
                     </p>
                   </button>
                 </div>

@@ -22,7 +22,7 @@ export default function Home() {
         <figure className="xl:hidden">
           <img
             className="m-auto relative top-12"
-            src="src/images/tea.svg"
+            src="/images/tea.svg"
             alt=""
           />
         </figure>
@@ -31,7 +31,7 @@ export default function Home() {
         <Hero />
         <aside className="hidden xl:flex grow justify-center">
           <div>
-            <img src="src/images/cafe 1.svg" alt="" />
+            <img src="/images/cafe 1.svg" alt="" />
           </div>
         </aside>
         <Features />

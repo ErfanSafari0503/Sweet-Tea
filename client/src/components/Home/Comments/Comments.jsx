@@ -46,7 +46,7 @@ export default function Comments() {
         }
         onClick={handleSlideDecrease}
       >
-        <img className="size-10" src="src/images/Left.svg" alt="" />
+        <img className="size-10" src="/images/Left.svg" alt="" />
       </Button>
       <Button
         styles={
@@ -56,7 +56,7 @@ export default function Comments() {
         }
         onClick={handleSlideIncrease}
       >
-        <img className="size-10" src="src/images/Right.svg" alt="" />
+        <img className="size-10" src="/images/Right.svg" alt="" />
       </Button>
     </section>
   );

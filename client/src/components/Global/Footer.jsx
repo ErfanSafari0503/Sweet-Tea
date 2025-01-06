@@ -15,7 +15,7 @@ export default function Footer({ isScrollable = false, scrollToTop }) {
           styles="absolute p-4 bg-primary rounded-full left-6 -top-10"
           onClick={scrollToTop}
         >
-          <img className="size-10" src="src/images/Up.svg" alt="" />
+          <img className="size-10" src="/images/Up.svg" alt="" />
         </Button>
       ) : null}
       <article className="flex flex-col w-full gap-10 my-4 pb-4 border-b-default border-slate-400">
@@ -50,14 +50,14 @@ export default function Footer({ isScrollable = false, scrollToTop }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img className="size-6" src="src/images/telegram.svg" alt="" />
+              <img className="size-6" src="/images/telegram.svg" alt="" />
             </a>
             <a
               href="https://www.instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img className="size-6" src="src/images/instagram.svg" alt="" />
+              <img className="size-6" src="/images/instagram.svg" alt="" />
             </a>
           </div>
           <div className="flex gap-4 items-center">
@@ -70,7 +70,7 @@ export default function Footer({ isScrollable = false, scrollToTop }) {
             </a>
             <img
               className="size-6 cursor-pointer"
-              src="src/images/subtract.svg"
+              src="/images/subtract.svg"
               alt=""
               onClick={() => window.open("mailto:SweetTea@gmail.com")}
             />

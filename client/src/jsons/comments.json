@@ -2,72 +2,72 @@
   "comments": [
     {
       "id": 1,
-      "quoteImage": "src/images/quote-1.svg",
+      "quoteImage": "/images/quote-1.svg",
       "quoteText": "من همیشه دنبال یه راه ساده و جذاب برای خوشحال کردن دوستام بودم. چایی نبات واقعا عالی بود، تونستم یه لحظه خاص رو تو دانشگاه براشون رقم بزنم!",
-      "authorImage": "src/images/Avatar.svg",
+      "authorImage": "/images/Avatar.svg",
       "authorName": "علی محمدی"
     },
     {
       "id": 2,
-      "quoteImage": "src/images/quote-1.svg",
+      "quoteImage": "/images/quote-1.svg",
       "quoteText": "فکر نمی‌کردم با یه چایی ساده بشه کسی رو اینقدر خوشحال کرد! خیلی خوشحالم که چایی نبات رو امتحان کردم. تجربه خاصی بود!",
-      "authorImage": "src/images/Avatar.svg",
+      "authorImage": "/images/Avatar.svg",
       "authorName": "سمانه احمدی"
     },
     {
       "id": 3,
-      "quoteImage": "src/images/quote-1.svg",
+      "quoteImage": "/images/quote-1.svg",
       "quoteText": "اینکه می‌تونی به راحتی از راه دور یکی از دوستات رو تو دانشگاهش سورپرایز کنی، حس فوق‌العاده‌ایه! ممنون از چایی نبات برای این ایده خلاقانه.",
-      "authorImage": "src/images/Avatar.svg",
+      "authorImage": "/images/Avatar.svg",
       "authorName": "رضا قاسمی"
     },
     {
       "id": 4,
-      "quoteImage": "src/images/quote-1.svg",
+      "quoteImage": "/images/quote-1.svg",
       "quoteText": "چایی نبات رو امتحان کردم و بهترین حس دنیا رو گرفتم وقتی دیدم دوستم پیام داد و گفت چقدر سورپرایز شده! همه چیزش دقیق و به موقع بود.",
-      "authorImage": "src/images/Avatar.svg",
+      "authorImage": "/images/Avatar.svg",
       "authorName": "زهرا محمودی"
     },
     {
       "id": 5,
-      "quoteImage": "src/images/quote-1.svg",
+      "quoteImage": "/images/quote-1.svg",
       "quoteText": "یه حرکت ساده اما پر از معنا! چایی نبات نه فقط یه هدیه، بلکه یه خاطره شیرینه که هیچ‌وقت فراموش نمی‌شه. عاشقش شدم!",
-      "authorImage": "src/images/Avatar.svg",
+      "authorImage": "/images/Avatar.svg",
       "authorName": "پرهام حسینی"
     },
     {
       "id": 6,
-      "quoteImage": "src/images/quote-1.svg",
+      "quoteImage": "/images/quote-1.svg",
       "quoteText": "برای تولد دوستم یه چایی نبات فرستادم. هم ساده بود، هم شیک. هیچوقت چهره ذوق‌زدش رو یادم نمی‌ره!",
-      "authorImage": "src/images/Avatar.svg",
+      "authorImage": "/images/Avatar.svg",
       "authorName": "مهسا بهرامی"
     },
     {
       "id": 7,
-      "quoteImage": "src/images/quote-1.svg",
+      "quoteImage": "/images/quote-1.svg",
       "quoteText": "من هر وقت دلم بخواد به یکی بگم چقدر برام عزیزه، چایی نبات رو انتخاب می‌کنم. ایده عالیه که روزای معمولی رو خاص می‌کنه.",
-      "authorImage": "src/images/Avatar.svg",
+      "authorImage": "/images/Avatar.svg",
       "authorName": "نگین طالبی"
     },
     {
       "id": 8,
-      "quoteImage": "src/images/quote-1.svg",
+      "quoteImage": "/images/quote-1.svg",
       "quoteText": "ساده، سریع، و خاص! از چایی نبات استفاده کردم و از تجربه‌ای که داشتم خیلی راضی‌ام. حتما دوباره امتحانش می‌کنم.",
-      "authorImage": "src/images/Avatar.svg",
+      "authorImage": "/images/Avatar.svg",
       "authorName": "کیان رضایی"
     },
     {
       "id": 9,
-      "quoteImage": "src/images/quote-1.svg",
+      "quoteImage": "/images/quote-1.svg",
       "quoteText": "یه حس نوستالژی همراه با مدرنیته! چایی نبات واقعا بهترین ایده برای ارتباطات دوستانه تو محیط دانشگاهیه.",
-      "authorImage": "src/images/Avatar.svg",
+      "authorImage": "/images/Avatar.svg",
       "authorName": "شادی سلطانی"
     },
     {
       "id": 10,
-      "quoteImage": "src/images/quote-1.svg",
+      "quoteImage": "/images/quote-1.svg",
       "quoteText": "اگر دنبال یه راه خاص برای تشکر، تبریک یا فقط خوشحال کردن کسی هستید، حتما چایی نبات رو امتحان کنید. پشیمون نمی‌شید!",
-      "authorImage": "src/images/Avatar.svg",
+      "authorImage": "/images/Avatar.svg",
       "authorName": "محمد رحمانی"
     }
   ]

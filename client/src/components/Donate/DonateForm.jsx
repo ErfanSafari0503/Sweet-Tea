@@ -5,7 +5,7 @@ import Input from "../Reusable/Input";
 import Button from "../Reusable/Button";
 
 const initialState = {
-  profilePicture: "./src/images/Avatar2.svg",
+  profilePicture: "/images/Avatar2.svg",
   username: "Username",
   info: "دانشجوی کامپیوتر دانشگاه شمسی پور، عاشق کدنویسی و یادگیری تکنولوژی‌های جدید. همیشه در جستجوی راه‌های جدید برای بهبود مهارت‌های برنامه‌نویسی‌",
   teaValue: 1,
@@ -135,7 +135,7 @@ export default function DonateForm() {
                 <h1 className="text-xl font-bold mx-28">{state.username}</h1>
               </div>
               <div className="py-4">
-                <p className="text-md opacity-60 text-right">{state.info}</p>
+                <p className="text-md opacity-60 text-center">{state.info}</p>
               </div>
             </div>
             <div className="w-full flex gap-4 mb-8 items-center justify-between">
@@ -221,9 +221,9 @@ export default function DonateForm() {
                       className="absolute bottom-1/2 translate-y-1/2 left-1 right-auto size-4 bg-white rounded-full transition-all duration-300 peer-checked:left-7"
                     ></label>
                   </div>
-                  <caption className="text-md opacity-70">
+                  <h3 className="text-md opacity-70">
                     می‌خواهم دونیت من ناشناس باشد.
-                  </caption>
+                  </h3>
                 </div>
                 <div className="flex gap-4">
                   <div className="relative inline-block w-12 h-6">
@@ -240,9 +240,9 @@ export default function DonateForm() {
                       className="absolute bottom-1/2 translate-y-1/2 left-1 right-auto size-4 bg-white rounded-full transition-all duration-300 peer-checked:left-7"
                     ></label>
                   </div>
-                  <caption className="text-md opacity-70">
+                  <h3 className="text-md opacity-70">
                     مرا در جریان وضعیت دونیت قرار بده.
-                  </caption>
+                  </h3>
                 </div>
               </div>
               <div className="flex gap-4 items-start">

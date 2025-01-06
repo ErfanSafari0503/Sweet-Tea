@@ -19,7 +19,7 @@ export default function PageNotFound() {
           </li>
           <li>
             <img
-              src="src/images/Menu.svg"
+              src="/images/Menu.svg"
               className="size-12"
               alt=""
               onClick={handleMenuToggled}
@@ -31,7 +31,7 @@ export default function PageNotFound() {
         <div className="flex flex-col w-full items-center gap-8">
           <h1 className="text-8xl font-bold flex">
             4
-            <img className="w-24" src="src/images/tea-zero.svg" alt="" />4
+            <img className="w-24" src="/images/tea-zero.svg" alt="" />4
           </h1>
           <h2 className="text-5xl font-bold">صفحه پیدا نشد.</h2>
           <p className="text-center text-3xl">

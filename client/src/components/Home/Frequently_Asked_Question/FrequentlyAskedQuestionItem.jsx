@@ -24,7 +24,7 @@ export default function FrequentlyAskedQuestionItem({
         <p className="font-bold text-xl">{question}</p>
         <img
           className="lg:size-10"
-          src="src/images/arrow-down.svg"
+          src="/images/arrow-down.svg"
           alt=""
           onClick={handleShowAnswer}
         />

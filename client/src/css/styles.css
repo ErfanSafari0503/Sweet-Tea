@@ -3,13 +3,8 @@
 @tailwind utilities;
 @layer base {
   @font-face {
-    font-family: "IRANSans";
-    src: url("../fonts/IranSansX Pro/Farsi numerals/Webfonts/fonts/Woff2/IRANSansXFaNum-Regular.woff2")
-      format("woff2");
-  }
-  @font-face {
     font-family: "PelakFA";
-    src: url("../fonts/PELAK-Economic/Farsi Numeral/webfonts/woff2/PelakFA-Regular.woff2")
+    src: url("/fonts/PELAK-Economic/Farsi Numeral/webfonts/woff2/PelakFA-Regular.woff2")
       format("woff2");
   }
 }
@@ -56,7 +51,7 @@ input::placeholder {
   appearance: none;
   width: 100%;
   height: 0.5rem;
-  background: #fdf8eb; /* Light background track */
+  background: #e66a17; /* Light background track */
   border-radius: 0.3125rem;
   outline: none;
   border: none;
@@ -64,7 +59,7 @@ input::placeholder {
 .custom-range::-webkit-slider-runnable-track {
   height: 0.5rem;
   border-radius: 0.3125rem;
-  background: linear-gradient(to right, #95563a 50%, #fdf8eb 50%);
+  background: linear-gradient(to right, #e66a17 50%, #fdf8eb 50%);
 }
 .custom-range::-webkit-slider-thumb {
   -webkit-appearance: none; /* Remove default thumb */
@@ -86,7 +81,7 @@ input::placeholder {
 }
 .custom-range::-moz-range-track {
   height: 0.5rem;
-  background: #fdf8eb;
+  background: #e66a17;
   border-radius: 5px;
 }
 .gradient-border {

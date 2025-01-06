@@ -2,7 +2,7 @@ import FrequentlyAskedQuestionItem from "./FrequentlyAskedQuestionItem";
 
 export default function FrequentlyAskedQuestion() {
   return (
-    <section className="flex w-full flex-col pt-14 mb-14">
+    <section className="flex w-full flex-col pt-14 mb-14 px-8">
       <article className="flex w-full flex-col gap-12">
         <div className="w-full text-center">
           <h1 className="font-bold text-3xl">سوالات متداول</h1>

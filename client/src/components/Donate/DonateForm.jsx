@@ -1,11 +1,13 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
+import { useParams, Link } from "react-router-dom";
+import LoadingScreen from "../Global/Loading";
 import Input from "../Reusable/Input";
 import Button from "../Reusable/Button";
-import LoadingScreen from "../Global/Loading";
+import axios from "axios";
 
 const initialState = {
-  profilePicture: "./src/images/Avatar2.svg",
-  username: "Username",
+  profilePicture: "/images/Avatar2.svg",
+  username: "",
   info: "دانشجوی کامپیوتر دانشگاه شمسی پور، عاشق کدنویسی و یادگیری تکنولوژی‌های جدید. همیشه در جستجوی راه‌های جدید برای بهبود مهارت‌های برنامه‌نویسی‌",
   teaValue: 1,
   name: "",
@@ -24,9 +26,7 @@ function reducer(state, action) {
     case "userData/loaded":
       return {
         ...state,
-        profilePicture: action.payload.profilePicture,
         username: action.payload.username,
-        info: action.payload.info,
       };
     case "tea/added":
       return {
@@ -50,6 +50,10 @@ function reducer(state, action) {
       return { ...state, termsAndConditions: !state.termsAndConditions };
     case "submit/started":
       return { ...state, isLoading: true };
+    case "submit/successed":
+      return { ...state, isLoading: false };
+    case "submit/failed":
+      return { ...state, isLoading: false };
     default:
       return state;
   }
@@ -57,6 +61,14 @@ function reducer(state, action) {
 
 export default function DonateForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { username } = useParams();
+
+  useEffect(
+    function () {
+      dispatch({ type: "userData/loaded", payload: { username } });
+    },
+    [dispatch, username]
+  );
 
   function handleChange(e) {
     const { name, value, id } = e.target;
@@ -112,36 +124,56 @@ export default function DonateForm() {
     e.preventDefault();
 
     dispatch({ type: "submit/started" });
+
+    axios
+      .post(`http://localhost:3002/v1/tea?username=${state.username}`, {
+        count: String(state.teaValue),
+        type: "donate",
+        product_id: 1,
+        title: "title",
+        nickname: state.name,
+        message: state.message,
+        total_price: state.totalPrice,
+      })
+      .then((response) => {
+        if (response.status === 201) {
+          dispatch({ type: "submit/successed" });
+        }
+      })
+      .catch(() => {
+        dispatch({ type: "submit/failed" });
+        throw new Error("Server : An unexpected error occurred.");
+      });
   }
 
   if (state.isLoading) {
     return <LoadingScreen />;
   } else {
     return (
-      <div className="font-primary w-full bg-amber-50">
+      <div className="font-primary h-full w-full overflow-auto bg-secondary ">
         <div className="px-10 py-4">
           <header>
             <ul className="flex w-full flex-row text-base items-center justify-center">
-              <li className="order-first px-4 py-2 bg-amber-100 rounded-2xl xl:bg-slate-200">
-                <a to="/">چایی نبات</a>
+              <li className="order-first px-4 py-2 bg-primary text-white rounded-lg xl:bg-slate-200">
+                <Link to="/">چایی نبات</Link>
               </li>
             </ul>
           </header>
           <main className="w-full bg-white rounded-2xl my-12 px-8 py-4 ">
             <div className="mb-8">
-              <div className="flex items-center">
+              <div className="flex flex-col gap-2 items-center">
                 <img className="w-20" src={state.profilePicture} alt="" />
                 <h1 className="text-xl font-bold mx-28">{state.username}</h1>
               </div>
               <div className="py-4">
-                <p className="text-md opacity-60 text-right">{state.info}</p>
+                <p className="text-md opacity-60 text-center">{state.info}</p>
               </div>
             </div>
             <div className="w-full flex gap-4 mb-8 items-center justify-between">
               <div className="flex flex-col gap-2">
                 <h1 className="text-xl font-bold">تعداد چایی</h1>
               </div>
-              <div className="flex bg-amber-50 w-2/5 justify-between items-center rounded-lg overflow-hidden">
+              <div className="flex bg-secondary w-2/5 justify-between items-center rounded-lg overflow-hidden">
                 <div
                   className="bg-primary w-1/4 py-2 text-center text-xl text-white"
                   id="addTea"
@@ -220,9 +252,9 @@ export default function DonateForm() {
                       className="absolute bottom-1/2 translate-y-1/2 left-1 right-auto size-4 bg-white rounded-full transition-all duration-300 peer-checked:left-7"
                     ></label>
                   </div>
-                  <caption className="text-md opacity-70">
+                  <h3 className="text-md opacity-70">
                     می‌خواهم دونیت من ناشناس باشد.
-                  </caption>
+                  </h3>
                 </div>
                 <div className="flex gap-4">
                   <div className="relative inline-block w-12 h-6">
@@ -239,15 +271,15 @@ export default function DonateForm() {
                       className="absolute bottom-1/2 translate-y-1/2 left-1 right-auto size-4 bg-white rounded-full transition-all duration-300 peer-checked:left-7"
                     ></label>
                   </div>
-                  <caption className="text-md opacity-70">
+                  <h3 className="text-md opacity-70">
                     مرا در جریان وضعیت دونیت قرار بده.
-                  </caption>
+                  </h3>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
                 <Input
                   type="checkbox"
-                  className="scale-150 size-8 border-gray-300"
+                  className="scale-100 size-8 border-gray-300"
                   id="TermsAndConditions"
                   name="termsAndConditions"
                   value={state.termsAndConditions}

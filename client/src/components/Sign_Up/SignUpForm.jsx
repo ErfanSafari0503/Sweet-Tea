@@ -200,16 +200,12 @@ export default function SignUpForm() {
 
     try {
       await axios
-        .post("https://localhost:8384/api/sign-up", {
-          status: "success",
-          data: {
-            firstName: state.firstName,
-            lastName: state.lastName,
-            username: state.username,
-            gender: state.gender,
-            phoneNumber: state.phoneNumber,
-            password: state.password,
-          },
+        .post("http://localhost:3002/v1/auth/register", {
+          first_name: state.firstName,
+          last_name: state.lastName,
+          phone_number: state.phoneNumber,
+          username: state.username,
+          password: state.password,
         })
         .then((response) => {
           if (response.status === 200 || response.status === 201) {
@@ -220,7 +216,7 @@ export default function SignUpForm() {
               type: "NEW_ERROR",
               payload: {
                 field: "server",
-                value: "Unexpected response from the server.",
+                value: `respons code ${response.status}`,
               },
             });
           }
@@ -242,10 +238,10 @@ export default function SignUpForm() {
 
   return (
     <form
-      className="container max-w-96 h-screen m-auto	w-full px-5 py-4 text-xs flex flex-col flex-wrap"
+      className="container max-w-96 h-screen m-auto w-full px-5 py-4 font-primary text-xs flex flex-col"
       onSubmit={handleSubmit}
     >
-      <h3 className="text-start text-2xl my-4">ثبت نام</h3>
+      <h3 className="text-start text-2xl font-bold my-4">ثبت نام</h3>
       <p className="mb-5 text-gray-500">به چایی نبات خوش اومدی!</p>
       <div className="flex flex-col flex-wrap gap-4">
         <div className="flex flex-col justify-around gap-2">
@@ -253,13 +249,15 @@ export default function SignUpForm() {
           <Input
             type="text"
             placeholder="عرفان"
-            className="border-default border-stone-400 text-right p-2 rounded-lg"
+            className="border-default border-stone-400 text-right px-2 py-4 rounded-lg"
             id="Login-First-Name-Input"
             name="firstName"
             value={state.firstName}
             onChange={handleChange}
           />
-          {!state.firstName && <span className="">فقط حروف فارسی</span>}
+          {!state.firstName && (
+            <span className="text-zinc-500">فقط حروف فارسی</span>
+          )}
           {state.error.firstName && (
             <span className="">{state.error.firstName}</span>
           )}
@@ -269,13 +267,15 @@ export default function SignUpForm() {
           <Input
             type="text"
             placeholder="رئیس صفری"
-            className="border-default border-stone-400 text-right p-2 rounded-lg"
+            className="border-default border-stone-400 text-right px-2 py-4 rounded-lg"
             id="Login-Last-Name-Input"
             name="lastName"
             value={state.lastName}
             onChange={handleChange}
           />
-          {!state.lastName && <span className="">فقط حروف فارسی</span>}
+          {!state.lastName && (
+            <span className="text-zinc-500">فقط حروف فارسی</span>
+          )}
           {state.error.lastName && (
             <span className="">{state.error.lastName}</span>
           )}
@@ -285,7 +285,7 @@ export default function SignUpForm() {
           <Input
             type="text"
             placeholder="Username"
-            className="border-default border-stone-400 text-right p-2 rounded-lg"
+            className="border-default border-stone-400 text-right px-2 py-4 rounded-lg"
             id="Login-Username-Input"
             name="username"
             value={state.username}
@@ -303,7 +303,7 @@ export default function SignUpForm() {
             name="gender"
             value={state.gender}
             onChange={handleChange}
-            className="border-default border-stone-400 text-right p-2 rounded-lg"
+            className="border-default border-stone-400 text-right p-2 rounded-lg focus:outline-none"
           >
             <option value="select" hidden={state.gender !== "select"}>
               انتخاب کنید
@@ -319,7 +319,7 @@ export default function SignUpForm() {
           <Input
             type="text"
             placeholder="09125553214"
-            className="border-default border-stone-400 text-right p-2 rounded-lg"
+            className="border-default border-stone-400 text-right px-2 py-4 rounded-lg"
             id="Login-Number-Input"
             name="phoneNumber"
             value={state.phoneNumber}
@@ -335,7 +335,7 @@ export default function SignUpForm() {
           <Input
             type="password"
             placeholder="********"
-            className="border-default border-stone-400 text-right p-2 rounded-lg"
+            className="border-default border-stone-400 text-right px-2 py-4 rounded-lg"
             id="Login-Password-Input"
             name="password"
             value={state.password}
@@ -351,7 +351,7 @@ export default function SignUpForm() {
           <Input
             type="password"
             placeholder="********"
-            className="border-default border-stone-400 text-right p-2 rounded-lg"
+            className="border-default border-stone-400 text-right px-2 py-4 rounded-lg"
             id="Login-Password-Checker-Input"
             name="confirmPassword"
             value={state.confirmPassword}
@@ -362,9 +362,9 @@ export default function SignUpForm() {
           )}
         </div>
       </div>
-      <div className="flex flex-col grow justify-end gap-2">
+      <div className="flex flex-col grow justify-end gap-2 my-8">
         <Button
-          styles="w-full bg-sky-600 p-2 rounded-lg text-zinc-50"
+          styles="w-full bg-primary px-2 py-4 rounded-xl text-zinc-50 text-base"
           type="submit"
           isDisabled={state.isLoading}
         >
@@ -372,7 +372,7 @@ export default function SignUpForm() {
         </Button>
         <div className="flex justify-center gap-2">
           <span>قبلا ثبت نام کردید؟</span>
-          <Link to="/sign-in" className="text-sky-700 active:text-sky-950">
+          <Link to="/sign-in" className="text-primary">
             <span>ورود</span>
           </Link>
         </div>

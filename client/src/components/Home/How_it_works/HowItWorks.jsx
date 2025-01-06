@@ -3,7 +3,7 @@ import Button from "../../Reusable/Button";
 
 export default function HowItWorks() {
   return (
-    <section className="flex w-full flex-col mb-14">
+    <section className="flex w-full flex-col mb-14 px-8">
       <article className="flex w-full flex-col gap-14">
         <div className="w-full flex flex-col items-center gap-5">
           <p className="font-bold text-3xl">چجوری کار میکنه؟</p>
@@ -30,7 +30,7 @@ export default function HowItWorks() {
             last={true}
           />
           <div className="w-full">
-            <Button styles="w-full bg-blue-700 p-4 rounded-lg text-zinc-50 text-lg">
+            <Button styles="w-full bg-primary p-4 rounded-xl text-zinc-50 text-lg">
               سفارش بده
             </Button>
           </div>

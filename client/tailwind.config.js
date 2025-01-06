@@ -11,6 +11,8 @@ export default {
       },
       colors: {
         primary: "#E66A17",
+        secondary: "#FDF0E8",
+        tertiary: "#ECE9E9",
       },
       keyframes: {
         spin: {
@@ -20,6 +22,9 @@ export default {
       },
       animation: {
         spin: "spin 1.5s linear infinite",
+      },
+      spacing: {
+        22: "5.5rem",
       },
     },
   },

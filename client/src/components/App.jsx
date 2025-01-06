@@ -1,31 +1,39 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import LoadingScreen from "../pages/LoadingScreen";
+import LoadingScreen from "../pages/LoadingPage";
+import PageNotFound from "../pages/PageNotFoundPage";
 
-const Home = lazy(() => import("../pages/Home"));
-const SignUp = lazy(() => import("../pages/SignUp"));
-const SignIn = lazy(() => import("../pages/SignIn"));
-const Dashboard = lazy(() => import("../pages/Dashboard"));
-const Donate = lazy(() => import("../pages/Donate"));
-const Notification = lazy(() => import("../pages/NotificationPage"));
+import { AuthProvider } from "../contexts/AuthContext";
+import { UserProvider } from "../contexts/UserContext";
+
+const Home = lazy(() => import("../pages/HomePage"));
+const AboutUs = lazy(() => import("../pages/AboutUsPage"));
+const ContactUs = lazy(() => import("../pages/ContactUsPage"));
+const SignUp = lazy(() => import("../pages/SignUpPage"));
+const SignIn = lazy(() => import("../pages/SignInPage"));
+const Dashboard = lazy(() => import("../pages/DashboardPage"));
+const Donate = lazy(() => import("../pages/DonatePage"));
 
 export default function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Suspense fallback={<LoadingScreen />}>
-          <Routes>
-            <Route index element={<Home />} />
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="sign-in" element={<SignIn />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="donate" element={<Donate />} />
-            <Route path="loading" element={<LoadingScreen />} />
-            <Route path="notification" element={<Notification />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </>
+    <AuthProvider>
+      <UserProvider>
+        <BrowserRouter>
+          <Suspense fallback={<LoadingScreen />}>
+            <Routes>
+              <Route index element={<Home />} />
+              <Route path="about-us" element={<AboutUs />} />
+              <Route path="contact-us" element={<ContactUs />} />
+              <Route path="sign-up" element={<SignUp />} />
+              <Route path="sign-in" element={<SignIn />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="donate/:username" element={<Donate />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </UserProvider>
+    </AuthProvider>
   );
 }

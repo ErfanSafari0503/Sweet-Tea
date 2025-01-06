@@ -1,80 +1,96 @@
-export default function SideMenu() {
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useUser } from "../../hooks/useUser";
+
+SideMenu.propTypes = {
+  isOpen: PropTypes.bool,
+};
+
+export default function SideMenu({ isOpen }) {
+  const { state, dispatch } = useUser();
+
+  function handleSignOut() {
+    dispatch({ type: "sign/out" });
+  }
+
   return (
-    <aside className="bg-white fixed h-screen z-50 max-w-[50%] overflow-y-auto hidden">
-      <div className="mx-14 my-16 flex flex-col gap-4 items-center">
+    <aside
+      className={
+        isOpen
+          ? "bg-white fixed h-screen z-50 max-w-[50%] overflow-y-auto"
+          : "bg-white fixed h-screen z-50 max-w-[50%] overflow-y-auto hidden"
+      }
+    >
+      <div className="mx-24 my-16 flex flex-col gap-4 items-center">
         <div>
           <img className="w-32" src="src/images/Avatar2.svg" alt="" />
         </div>
         <div className="flex flex-col items-center gap-2">
-          <h1 className="text-2xl">username</h1>
-          <h3 className="text-md text-slate-500">sweettea.ir/username</h3>
+          <h1 className="text-2xl">{state.username}</h1>
+          <Link to={`/donate/${state.username}`}>
+            <h3 className="text-md text-slate-500">
+              sweettea.ir/{state.username}
+            </h3>
+          </Link>
         </div>
       </div>
       <div className="mx-10">
         <ul className="flex flex-col justify-center items-center my-8 gap-10">
-          <li className="flex justify-start w-full gap-4 items-center activated">
+          <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/dashboard.svg" alt="" />
+              <img src="/images/dashboard.svg" alt="" />
             </span>
-            <a href="/" className="text-xl">
+            <Link to="/dashboard" className="text-xl">
               داشبورد
-            </a>
+            </Link>
           </li>
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/wallet-icon.svg" alt="" />
+              <img src="/images/wallet-icon.svg" alt="" />
             </span>
-            <a href="/" className="text-xl">
+            <Link to="/wallet" className="text-xl">
               کیف پول
-            </a>
+            </Link>
           </li>
           <li className="flex justify-start w-full gap-4 items-center ">
             <span>
-              <img src="src/images/gift.svg" alt="" />
+              <img src="/images/gift.svg" alt="" />
             </span>
-            <a href="/" className="text-xl">
+            <Link to="/gifts" className="text-xl">
               هدایا
-            </a>
+            </Link>
           </li>
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/my-cafe.svg" alt="" />
+              <img src="/images/history.svg" alt="" />
             </span>
-            <a href="/" className="text-xl">
-              کافه های من
-            </a>
-          </li>
-          <li className="flex justify-start w-full gap-4 items-center">
-            <span>
-              <img src="src/images/history.svg" alt="" />
-            </span>
-            <a href="/" className="text-xl">
+            <Link to="/logs" className="text-xl">
               تاریخچه
-            </a>
+            </Link>
           </li>
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/settings.svg" alt="" />
+              <img src="/images/settings.svg" alt="" />
             </span>
-            <a href="/" className="text-xl">
+            <Link to="/settings" className="text-xl">
               تنظیمات
-            </a>
+            </Link>
           </li>
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/support.svg" alt="" />
+              <img src="/images/support.svg" alt="" />
             </span>
-            <a href="/" className="text-xl">
+            <Link to="/support" className="text-xl">
               پشتیبانی
-            </a>
+            </Link>
           </li>
           <li className="flex justify-start w-full gap-4 items-center">
             <span>
-              <img src="src/images/log-out.svg" alt="" />
+              <img src="/images/log-out.svg" alt="" />
             </span>
-            <a href="/" className="text-xl text-red-600">
+            <Link to="/" className="text-xl" onClick={handleSignOut}>
               بیرون رفتن
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

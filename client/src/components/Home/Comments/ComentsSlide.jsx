@@ -26,7 +26,7 @@ export default function ComentsSlide({
       <div className="flex justify-center px-10">
         <div className="flex flex-col items-center gap-4 order-2">
           <img className="size-16" src={authorImage} alt="" />
-          <caption className="text-xl font-bold">{authorName}</caption>
+          <h3 className="text-xl font-bold">{authorName}</h3>
         </div>
       </div>
     </div>

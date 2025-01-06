@@ -51,7 +51,7 @@ function reducer(state, action) {
     case "submit/started":
       return { ...state, isLoading: true };
     case "submit/successed":
-      return { ...state, isLoading: false };
+      return { initialState };
     case "submit/failed":
       return { ...state, isLoading: false };
     default:

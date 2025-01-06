@@ -158,7 +158,7 @@ export default function SignInForm() {
         <label htmlFor="Login-Number-Input">شماره موبایل</label>
         <Input
           type="text"
-          placeholder="09331732701"
+          placeholder="0989123456789"
           className="border-default border-stone-400 text-right p-2 rounded-lg"
           id="Login-Number-Input"
           name="phoneNumber"

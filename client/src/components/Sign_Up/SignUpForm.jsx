@@ -248,7 +248,7 @@ export default function SignUpForm() {
           <label htmlFor="Login-First-Name-Input">نام</label>
           <Input
             type="text"
-            placeholder="عرفان"
+            placeholder="لورم"
             className="border-default border-stone-400 text-right px-2 py-4 rounded-lg"
             id="Login-First-Name-Input"
             name="firstName"
@@ -266,7 +266,7 @@ export default function SignUpForm() {
           <label htmlFor="Login-Last-Name-Input">نام خانوادگی</label>
           <Input
             type="text"
-            placeholder="رئیس صفری"
+            placeholder="لورم ایپسوم "
             className="border-default border-stone-400 text-right px-2 py-4 rounded-lg"
             id="Login-Last-Name-Input"
             name="lastName"
@@ -284,7 +284,7 @@ export default function SignUpForm() {
           <label htmlFor="Login-Username-Input">نام کاربری</label>
           <Input
             type="text"
-            placeholder="Username"
+            placeholder="لورم ایپسوم"
             className="border-default border-stone-400 text-right px-2 py-4 rounded-lg"
             id="Login-Username-Input"
             name="username"
@@ -318,7 +318,7 @@ export default function SignUpForm() {
           <label htmlFor="Login-Number-Input">شماره موبایل</label>
           <Input
             type="text"
-            placeholder="09125553214"
+            placeholder="0989123456789"
             className="border-default border-stone-400 text-right px-2 py-4 rounded-lg"
             id="Login-Number-Input"
             name="phoneNumber"

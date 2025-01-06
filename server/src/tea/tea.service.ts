@@ -56,7 +56,7 @@ export class TeaService {
     var gift_products = [];
 
     for (let index = 0; index < count; index++) {
-      gift_products[index] = this.prisma.gift_products.create({
+      gift_products[index] = await this.prisma.gift_products.create({
         data: {
           gift_id: gift.id,
           product_id: product_id,
@@ -125,6 +125,7 @@ export class TeaService {
       gifts: aggregatedGifts.flat(),
       walletAmount: wallet.balance,
       firstName: reciverUser.first_name,
+      username: reciverUser.username,
       giftCount: giftCount,
     };
   }

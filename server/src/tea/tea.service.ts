@@ -30,15 +30,11 @@ export class TeaService {
       count,
     } = createTeaDto;
     if (username) {
-      const receiver_user = await this.prisma.users.findUnique({
+      receiver_user_id = await this.prisma.users.findUnique({
         where: {username: username}, 
         select: {id: true}
       })
-      if (receiver_user == null) {
-        receiver_user_id = receiver_user.id
-      }
     }
-    createTeaDto.receiver_user_id;
 
     const gift = await this.prisma.gifts.create({
       data: {

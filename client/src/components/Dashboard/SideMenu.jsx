@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useUser } from "../../hooks/useUser";
 
 SideMenu.propTypes = {
   isOpen: PropTypes.bool,
 };
-const username = "Username";
 
 export default function SideMenu({ isOpen }) {
+  const { state, dispatch } = useUser();
+
+  function handleSignOut() {
+    dispatch({ type: "sign/out" });
+  }
+
   return (
     <aside
       className={
@@ -20,9 +26,11 @@ export default function SideMenu({ isOpen }) {
           <img className="w-32" src="src/images/Avatar2.svg" alt="" />
         </div>
         <div className="flex flex-col items-center gap-2">
-          <h1 className="text-2xl">username</h1>
-          <Link to={`/donate/:${username}`}>
-            <h3 className="text-md text-slate-500">sweettea.ir/username</h3>
+          <h1 className="text-2xl">{state.username}</h1>
+          <Link to={`/donate/${state.username}`}>
+            <h3 className="text-md text-slate-500">
+              sweettea.ir/{state.username}
+            </h3>
           </Link>
         </div>
       </div>
@@ -80,7 +88,7 @@ export default function SideMenu({ isOpen }) {
             <span>
               <img src="/images/log-out.svg" alt="" />
             </span>
-            <Link to="/" className="text-xl">
+            <Link to="/" className="text-xl" onClick={handleSignOut}>
               بیرون رفتن
             </Link>
           </li>

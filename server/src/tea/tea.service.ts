@@ -91,26 +91,31 @@ export class TeaService {
     });
 
     let giftCount = 0;
-    const aggregatedGifts = gifts.map(async (gift) => {
-      giftCount += gift.gift_products.length;
-      const sender = `${gift.users_gifts_sender_user_idTousers.first_name} ${gift.users_gifts_sender_user_idTousers.last_name}`;
-      const products = gift.gift_products.map((gp) => ({
-        product: gp.products.name,
-        size: gp.products.size,
-        buffet: gp.products.buffets.name,
-      }));
+    const aggregatedGifts = await Promise.all(
+      gifts.map(async (gift) => {
+        giftCount += gift.gift_products.length;
+        let sender = 'donater';
+        if (gift.users_gifts_sender_user_idTousers) {
+          sender = `${gift.users_gifts_sender_user_idTousers.first_name} ${gift.users_gifts_sender_user_idTousers.last_name}`;
+        }
 
-      products.map((product) => ({
-        product: product.product,
-        size: product.size,
-        buffet: product.buffet,
-        message: gift.message,
-        nickname: gift.nickname,
-        title: gift.title,
-        sender,
-        productCount: gift.gift_products.length, // Count products for each gift
-      }));
-    });
+        const products = gift.gift_products.map((gp) => ({
+          product: gp.products.name,
+          size: gp.products.size,
+          buffet: gp.products.buffets.name,
+        }));
+
+        return products.map((product) => ({
+          product: product.product,
+          size: product.size,
+          buffet: product.buffet,
+          message: gift.message,
+          nickname: gift.nickname,
+          title: gift.title,
+          sender,
+        }));
+      }),
+    );
 
     const reciverUser = await this.prisma.users.findUnique({
       where: { id: this.request['user'].id },

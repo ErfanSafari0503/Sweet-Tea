@@ -1,12 +1,13 @@
-import { useReducer } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useReducer } from "react";
+import { useParams, Link } from "react-router-dom";
 import LoadingScreen from "../Global/Loading";
 import Input from "../Reusable/Input";
 import Button from "../Reusable/Button";
+import axios from "axios";
 
 const initialState = {
   profilePicture: "/images/Avatar2.svg",
-  username: "Username",
+  username: "",
   info: "دانشجوی کامپیوتر دانشگاه شمسی پور، عاشق کدنویسی و یادگیری تکنولوژی‌های جدید. همیشه در جستجوی راه‌های جدید برای بهبود مهارت‌های برنامه‌نویسی‌",
   teaValue: 1,
   name: "",
@@ -25,9 +26,7 @@ function reducer(state, action) {
     case "userData/loaded":
       return {
         ...state,
-        profilePicture: action.payload.profilePicture,
         username: action.payload.username,
-        info: action.payload.info,
       };
     case "tea/added":
       return {
@@ -51,6 +50,10 @@ function reducer(state, action) {
       return { ...state, termsAndConditions: !state.termsAndConditions };
     case "submit/started":
       return { ...state, isLoading: true };
+    case "submit/successed":
+      return { ...state, isLoading: false };
+    case "submit/failed":
+      return { ...state, isLoading: false };
     default:
       return state;
   }
@@ -58,6 +61,14 @@ function reducer(state, action) {
 
 export default function DonateForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { username } = useParams();
+
+  useEffect(
+    function () {
+      dispatch({ type: "userData/loaded", payload: { username } });
+    },
+    [dispatch, username]
+  );
 
   function handleChange(e) {
     const { name, value, id } = e.target;
@@ -113,6 +124,26 @@ export default function DonateForm() {
     e.preventDefault();
 
     dispatch({ type: "submit/started" });
+
+    axios
+      .post(`http://localhost:3002/v1/tea?username=${state.username}`, {
+        count: String(state.teaValue),
+        type: "donate",
+        product_id: 1,
+        title: "title",
+        nickname: state.name,
+        message: state.message,
+        total_price: state.totalPrice,
+      })
+      .then((response) => {
+        if (response.status === 201) {
+          dispatch({ type: "submit/successed" });
+        }
+      })
+      .catch(() => {
+        dispatch({ type: "submit/failed" });
+        throw new Error("Server : An unexpected error occurred.");
+      });
   }
 
   if (state.isLoading) {

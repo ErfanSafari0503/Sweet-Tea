@@ -23,6 +23,9 @@ export default {
       animation: {
         spin: "spin 1.5s linear infinite",
       },
+      spacing: {
+        22: "5.5rem",
+      },
     },
   },
   plugins: [],

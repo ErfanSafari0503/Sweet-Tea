@@ -8,6 +8,7 @@ UserProvider.propTypes = {
 const UserContext = createContext();
 
 const initialState = {
+  username: "",
   firstName: "",
   walletAmount: 0,
   teaAmount: 0,
@@ -26,6 +27,7 @@ function reducer(state, action) {
     case "userData/loaded":
       return {
         ...state,
+        username: action.payload.username,
         firstName: action.payload.firstName,
         walletAmount: action.payload.walletAmount,
         teaAmount: action.payload.teaAmount,
@@ -42,6 +44,8 @@ function reducer(state, action) {
       return { ...state, isLoading: false };
     case "submit/started":
       return { ...state, isLoading: true };
+    case "sign/out":
+      return { initialState };
     default:
       return state;
   }

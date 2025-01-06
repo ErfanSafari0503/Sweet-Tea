@@ -21,7 +21,7 @@ export default function Home() {
         <Navbar onMenuToggled={handleMenuToggled} />
         <figure className="xl:hidden">
           <img
-            className="m-auto relative top-12"
+            className="m-auto relative top-22"
             src="/images/tea.svg"
             alt=""
           />

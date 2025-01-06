@@ -66,7 +66,7 @@ model gifts {
   id                                  BigInt          @id @default(autoincrement()) @db.UnsignedBigInt
   type                                gifts_type      @default(donate)
   receiver_user_id                    BigInt          @db.UnsignedBigInt
-  sender_user_id                      BigInt          @db.UnsignedBigInt
+  sender_user_id                      BigInt?          @db.UnsignedBigInt
   title                               String?         @db.VarChar(255)
   nickname                            String?         @db.VarChar(40)
   message                             String?         @db.Text
@@ -79,7 +79,7 @@ model gifts {
   updated_at                          DateTime        @updatedAt @db.Timestamp(0)
   gift_products                       gift_products[]
   users_gifts_receiver_user_idTousers users           @relation("gifts_receiver_user_idTousers", fields: [receiver_user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "gifts_receiver_user_id_foreign")
-  users_gifts_sender_user_idTousers   users           @relation("gifts_sender_user_idTousers", fields: [sender_user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "gifts_sender_user_id_foreign")
+  users_gifts_sender_user_idTousers   users?           @relation("gifts_sender_user_idTousers", fields: [sender_user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "gifts_sender_user_id_foreign")
   payments                            payments[]
 
   @@index([receiver_user_id], map: "gifts_receiver_user_id_foreign")
